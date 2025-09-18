@@ -22,13 +22,13 @@ nav:
     - 简历: resume.md
     - 工作经验: experience.md
   - Unity:
-    - Unity首页: unity/index.md
-    - 基础入门: unity/basics.md
-    - 实用技巧: unity/tips.md
+    - Unity首页: Unity/index.md
+    - 基础入门: Unity/basics.md
+    - 实用技巧: Unity/tips.md
   - C#:
-    - C#首页: csharp/index.md
-    - 基础语法: csharp/fundamentals.md
-    - 高级特性: csharp/advanced.md
+    - C#首页: CSharp/index.md
+    - 基础语法: CSharp/fundamentals.md
+    - 高级特性: CSharp/advanced.md
 
 # 插件配置（增强功能）
 plugins:
