@@ -1,44 +1,56 @@
 @echo off
 chcp 65001 > nul
-title Git一键上传工具
+title MkDocs部署工具
 echo ========================================
-echo            Git 一键上传工具
+echo           MkDocs 部署工具
 echo ========================================
 echo.
 
 REM 切换到项目目录
 cd /d "E:\_Project\yuhengyyKnowledge"
 
-REM 检查是否有更改
-git status
+echo 1. 只上传源代码
+echo 2. 构建并上传网站（gh-pages）
 echo.
-echo 请确认以上更改是否正确...
-echo.
+choice /c 12 /n /m "请选择 [1-2]: "
 
-REM 输入提交信息
+if %errorlevel% equ 1 goto source_only
+if %errorlevel% equ 2 goto deploy_pages
+
+:source_only
 set /p commit_msg=请输入提交说明: 
 if "%commit_msg%"=="" (
     echo 提交信息不能为空！
     pause
     exit /b 1
 )
-
 echo.
-echo 正在执行Git操作...
-echo.
-
-REM 执行Git操作
+echo 正在上传源代码...
 git add .
 git commit -m "%commit_msg%"
 git push origin main
+goto done
 
+:deploy_pages
+set /p commit_msg=请输入提交说明: 
+if "%commit_msg%"=="" (
+    echo 提交信息不能为空！
+    pause
+    exit /b 1
+)
+echo.
+echo 正在构建并部署网站...
+git add .
+git commit -m "%commit_msg%"
+git push origin main
+mkdocs gh-deploy --force
+
+:done
 echo.
 if %errorlevel% equ 0 (
-    echo ✅ 上传成功！更改已推送到GitHub。
+    echo ✅ 操作成功完成！
 ) else (
-    echo ❌ 上传失败，请检查错误信息。
+    echo ❌ 操作失败！
 )
-
 echo.
-echo 操作完成！
 pause
