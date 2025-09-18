@@ -45,7 +45,7 @@ if errorlevel 1 (
 )
 
 echo 推送到远程仓库...
-git push origin main
+git push github-pages
 if errorlevel 1 (
     echo ❌ 推送失败！
     pause
