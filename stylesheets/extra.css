@@ -1,0 +1,75 @@
+/* 自定义样式 - yuhengyyKnowledge */
+
+/* 卡片网格布局优化 */
+.grid.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.grid.cards .card {
+    background: var(--md-default-bg-color);
+    border: 1px solid var(--md-typeset-table-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.grid.cards .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border-color: var(--md-primary-fg-color);
+}
+
+.grid.cards .card h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--md-primary-fg-color);
+}
+
+.grid.cards .card small {
+    color: var(--md-typeset-color);
+    opacity: 0.8;
+}
+
+/* 学习统计表格样式 */
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+}
+
+.stats-table th, .stats-table td {
+    padding: 0.75rem;
+    text-align: center;
+    border: 1px solid var(--md-typeset-table-color);
+}
+
+.stats-table th {
+    background-color: var(--md-primary-fg-color);
+    color: var(--md-primary-bg-color);
+    font-weight: bold;
+}
+
+/* 首页特定样式 */
+.home-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .grid.cards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .stats-table {
+        font-size: 0.9rem;
+    }
+}
