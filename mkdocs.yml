@@ -1,5 +1,5 @@
-site_name: 我的技术博客
-site_description: Unity开发、C#编程及项目实战经验分享
+site_name: 我的技术学习笔记
+site_description: 个人Unity与C#学习记录，课程项目实践与知识点整理
 site_author: 您的名字
 
 theme:
@@ -42,51 +42,57 @@ extra_css:
 extra_javascript:
   - javascripts/extra.js
 
-# 导航配置 - 这里实现多级折叠
+# 导航配置 - 重构为以课程项目为核心
 nav:
   - 首页: index.md
-  
+
   - 关于我:
-    - 个人简历: resume.md
-    - 工作经验: experience.md
+      - 个人简历: about/resume.md
+      - 学习目标: about/goals.md
 
-  - Unity 开发:
-    - Unity 首页: Unity/index.md
-    - 基础入门: Unity/basics.md
-    - 实用技巧: Unity/tips.md
+  - Unity项目（课程）:
+      - 游戏开发:
+          - 三消游戏: courses/unity/match3-game.md
+          - 三消游戏(Dotween版): courses/unity/match3-dotween.md
+          - 斗地主游戏: courses/unity/landlord-game.md
+      - 系统框架:
+          - 对话系统（免费版）: courses/unity/dialogue-system-free.md
+          - 对话系统（付费版）: courses/unity/dialogue-system-pro.md
+          - 物品工具包: courses/unity/item-toolkit.md
+          - A星导航: courses/unity/astar-navigation.md
+          - 工具包: courses/unity/utility-toolkit.md
+      - QFramework学习:
+          - QFramework创建: courses/unity/qframework-create.md
+          - QFramework学习: courses/unity/qframework-study.md
+          - QFramework简易游戏: courses/unity/qframework-games.md
 
-  - C# 编程:
-    - C# 首页: CSharp/index.md
-    - 基础语法: CSharp/fundamentals.md
-    - 高级特性: CSharp/advanced.md
+  - C#项目（课程）:
+      - 算法实现:
+          - 优先队列: courses/csharp/priority-queue.md
+      - 综合应用:
+          - 唐C#综合案例: courses/csharp/tang-comprehensive.md
+      - 网络编程:
+          - TCP网络通信: courses/csharp/tcp-network.md
 
-  - 项目实战:
-    - C# 项目:
-      - 优先队列实现: Course_C#/Plane_PriorityQueue/index.md
-      - 综合案例: Course_C#/Tang_C#_All/index.md
-    
-    - Unity 项目:
-      - 三消游戏(Dotween制作): Course_Unity/Another_MatchThree_Mirror/index.md
-      - 对话系统（免费版）: Course_Unity/Joker_Dialogue_Joker_Free/index.md
-      - 对话系统（付费版）: Course_Unity/Joker_Dialogue_Joker_Toll/index.md
-      - 物品工具包: Course_Unity/LiangXie_Item_Kit/index.md
-      - QFramework 创建: Course_Unity/LiangXie_QFramework_Create/index.md
-      - QFramework 简易游戏: Course_Unity/LiangXie_QFramework_EasyGames/index.md
-      - QFramework 学习: Course_Unity/LiangXie_QFramework_Sutdy/index.md
-      - 三消游戏: Course_Unity/Plane_MatchThree/index.md
-      - A星导航: Course_Unity/Plane_NavAStart/index.md
-      - 工具包: Course_Unity/Plane_ToolKit/index.md
-    
-    - Unity&C# 项目:
-      - 斗地主: Course_Unity_C#/Plane_LandLord/index.md
-      - TCP网络: Course_Unity_C#/Plane_NetWork_TCP/index.md
+  - 知识库:
+      - Unity笔记: knowledge/unity-notes.md
+      - C#笔记: knowledge/csharp-notes.md
+      - 问题记录: knowledge/problems.md
+      - 学习心得: knowledge/reflections.md
+
+  - 进度追踪:
+      - 学习计划: progress/plan.md
+      - 完成情况: progress/completed.md
+      - 待学习: progress/todo.md
 
 # 其他配置
-copyright: Copyright &copy; 2024 - 您的名字
+copyright: Copyright &copy; 2024 - 您的名字 · 个人学习记录
 
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/您的用户名
-    - icon: fontawesome/brands/linkedin
-      link: https://linkedin.com/in/您的用户名
+      name: 代码仓库
+    - icon: fontawesome/solid/book
+      link: https://您的学习平台链接
+      name: 学习平台
