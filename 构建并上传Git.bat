@@ -44,10 +44,21 @@ if errorlevel 1 (
     exit /b 1
 )
 
-echo 推送到远程仓库...
-git push origin github-pages
+echo 推送到源代码仓库 (main分支)...
+git push origin main
 if errorlevel 1 (
-    echo ❌ 推送失败！
+    echo ❌ 推送到main分支失败！
+    pause
+    exit /b 1
+)
+
+echo 部署到GitHub Pages (gh-pages分支)...
+mkdocs gh-deploy --force
+if errorlevel 1 (
+    echo ❌ 部署到gh-pages分支失败！
+    echo.
+    echo 请检查是否安装了mkdocs-git-deploy插件:
+    echo pip install mkdocs-git-deploy
     pause
     exit /b 1
 )
@@ -55,5 +66,7 @@ if errorlevel 1 (
 echo.
 echo ✅ MkDocs 部署完成！
 echo 📝 提交信息: %commit_msg%
-echo 🌐 GitHub Pages 会自动更新
+echo 📁 源代码: main 分支
+echo 🌐 网站: gh-pages 分支
+echo 🌐 GitHub Pages 会自动从gh-pages分支更新
 pause
