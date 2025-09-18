@@ -1,0 +1,38 @@
+site_name: 我的Unity&C#技术博客
+site_description: 分享Unity开发经验、C#编程知识和个人工作经历
+site_author: 你的名字
+
+# 使用Material主题
+theme:
+  name: material
+  # 自定义主题颜色（蓝色系适合技术博客）
+  palette:
+    primary: blue
+  # 显示目录
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+
+# 配置导航结构
+nav:
+  - 首页: index.md
+  - 关于我:
+    - 简历: resume.md
+    - 工作经验: experience.md
+  - Unity:
+    - Unity首页: unity/index.md
+    - 基础入门: unity/basics.md
+    - 实用技巧: unity/tips.md
+  - C#:
+    - C#首页: csharp/index.md
+    - 基础语法: csharp/fundamentals.md
+    - 高级特性: csharp/advanced.md
+
+# 插件配置（增强功能）
+plugins:
+  - search:
+      lang: zh
+  - minify:
+      minify_html: true
