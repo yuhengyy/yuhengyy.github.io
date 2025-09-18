@@ -44,12 +44,20 @@ if errorlevel 1 (
     exit /b 1
 )
 
-echo 推送到源代码仓库 (main分支)...
+echo 检查本地提交状态...
+git status
+echo.
+
+echo 尝试推送到源代码仓库 (main分支)...
 git push origin main
 if errorlevel 1 (
-    echo ❌ 推送到main分支失败！
-    pause
-    exit /b 1
+    echo ⚠️ 推送到main分支失败，可能是网络问题
+    echo.
+    echo 当前状态: 本地有未推送的提交
+    echo 您可以使用以下命令手动推送:
+    echo git push origin main
+    echo.
+    echo 继续尝试部署网站到GitHub Pages...
 )
 
 echo 部署到GitHub Pages (gh-pages分支)...
@@ -57,16 +65,26 @@ mkdocs gh-deploy --force
 if errorlevel 1 (
     echo ❌ 部署到gh-pages分支失败！
     echo.
-    echo 请检查是否安装了mkdocs-git-deploy插件:
-    echo pip install mkdocs-git-deploy
+    echo 可能的原因:
+    echo 1. 网络连接问题
+    echo 2. 未安装mkdocs-git-deploy插件
+    echo.
+    echo 请检查网络连接后重试
+    echo 安装插件命令: pip install mkdocs-git-deploy
     pause
     exit /b 1
 )
 
 echo.
-echo ✅ MkDocs 部署完成！
+echo ✅ MkDocs 网站部署完成！
 echo 📝 提交信息: %commit_msg%
-echo 📁 源代码: main 分支
-echo 🌐 网站: gh-pages 分支
-echo 🌐 GitHub Pages 会自动从gh-pages分支更新
+echo 📁 网站已部署到: gh-pages 分支
+
+REM 检查是否还有未推送的提交
+git status | find "Your branch is ahead" > nul
+if not errorlevel 1 (
+    echo ⚠️ 注意: 本地还有未推送的提交到main分支
+    echo 请手动执行: git push origin main
+)
+
 pause
