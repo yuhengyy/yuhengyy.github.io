@@ -1,6 +1,21 @@
-/* 自定义样式 - yuhengyyKnowledge */
+/* ==================== 自定义样式 - yuhengyyKnowledge ==================== */
 
-/* 卡片网格布局优化 */
+/**
+ * 首页内容区域样式
+ * 用于限制首页内容的最大宽度和居中显示
+ */
+.home-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ==================== 卡片网格布局样式 ==================== */
+
+/**
+ * 卡片网格容器
+ * 响应式网格布局，自动调整列数
+ */
 .grid.cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -8,6 +23,10 @@
     margin: 2rem 0;
 }
 
+/**
+ * 单个卡片样式
+ * 包含背景、边框、圆角等基础样式
+ */
 .grid.cards .card {
     background: var(--md-default-bg-color);
     border: 1px solid var(--md-typeset-table-color);
@@ -20,49 +39,114 @@
     color: inherit;
 }
 
+/**
+ * 卡片悬停效果
+ * 上浮动画、阴影和边框颜色变化
+ */
 .grid.cards .card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     border-color: var(--md-primary-fg-color);
 }
 
+/**
+ * 卡片标题样式
+ */
 .grid.cards .card h4 {
     margin: 0 0 0.5rem 0;
     color: var(--md-primary-fg-color);
 }
 
+/**
+ * 卡片描述文字样式
+ */
 .grid.cards .card small {
     color: var(--md-typeset-color);
     opacity: 0.8;
 }
 
-/* 学习统计表格样式 */
+/* ==================== 学习统计表格样式 ==================== */
+
+/**
+ * 统计表格容器
+ * 全宽显示，边框合并样式
+ */
 .stats-table {
     width: 100%;
     border-collapse: collapse;
     margin: 2rem 0;
 }
 
+/**
+ * 表格单元格基础样式
+ */
 .stats-table th, .stats-table td {
     padding: 0.75rem;
     text-align: center;
     border: 1px solid var(--md-typeset-table-color);
 }
 
+/**
+ * 表头样式
+ * 使用主题主色作为背景
+ */
 .stats-table th {
     background-color: var(--md-primary-fg-color);
     color: var(--md-primary-bg-color);
     font-weight: bold;
 }
 
-/* 首页特定样式 */
-.home-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+/* ==================== 导航栏样式优化 ==================== */
+
+/* ==================== 导航栏样式优化 ==================== */
+/**
+ * 可点击导航链接的悬停效果
+ * 使用橙色系作为交互颜色
+ */
+.md-nav__item .md-nav__link[href$=".md"]:hover {
+    background-color: rgba(0,0,0,0.03);
+    border-radius: 4px;
+    border-left-color: #f97316; /* 橙色 */
+    color: #f97316 !important;
 }
 
-/* 响应式调整 */
+/**
+ * 当前激活页面样式
+ * 使用橙色系突出显示当前选中项
+ */
+.md-nav__item .md-nav__link--active {
+    background-color: rgba(249, 115, 22, 0.1) !important;
+    color: #f97316 !important;
+    border-left-color: #f97316 !important;
+    border-radius: 4px;
+    font-weight: 500 !important;
+}
+/**
+ * 嵌套导航项标题样式 - 不可点击的分类标题
+ * 强制显示为蓝色，明确表示不可点击
+ */
+.md-nav__item--nested > .md-nav__link:not([href*="."]):not([href*="#"]),
+.md-nav__item .md-nav__link[href=""],
+.md-nav__item .md-nav__link[href="#"] {
+    color: var(--md-primary-fg-color) !important; /* 强制蓝色 */
+    font-weight: 600 !important;
+}
+/**
+ * 确保嵌套导航标题的样式优先级最高
+ */
+.md-nav__item--nested > .md-nav__link {
+    font-weight: 600;
+    color: var(--md-primary-fg-color) !important; /* 强制蓝色 */
+    margin-top: 0.8rem;
+    border-left: 2px solid var(--md-primary-fg-color);
+    padding-left: 0.5rem;
+}
+/* ==================== 响应式设计 ==================== */
+
+/**
+ * 移动端适配
+ * 小屏幕下的布局调整
+ */
 @media (max-width: 768px) {
     .grid.cards {
         grid-template-columns: 1fr;
@@ -72,4 +156,58 @@
     .stats-table {
         font-size: 0.9rem;
     }
+    
+    /* 移动端导航调整 */
+    .md-nav__item--nested > .md-nav__link {
+        padding-left: 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .md-nav__item .md-nav__link[href$=".md"] {
+        padding-left: 1.2rem;
+    }
+}
+
+/**
+ * 深色模式适配
+ * 确保在深色主题下也有良好的显示效果
+ */
+[data-md-color-scheme="slate"] {
+    .grid.cards .card:hover {
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    
+    .md-nav__item .md-nav__link[href$=".md"]:hover {
+        background-color: rgba(255,255,255,0.05);
+    }
+}
+
+
+/* 超级明显的测试样式 */
+.super-obvious-test {
+    font-size: 2em !important;
+    color: red !important;
+    background-color: yellow !important;
+    padding: 20px !important;
+    border: 5px dashed blue !important;
+    text-align: center !important;
+    margin: 30px 0 !important;
+}
+
+/* 夸张的卡片动画 */
+.grid.cards .card {
+    transition: all 0.5s ease !important;
+    border: 3px solid #ccc !important;
+}
+
+.grid.cards .card:hover {
+    transform: scale(1.1) !important;
+    border-color: red !important;
+    box-shadow: 0 10px 30px rgba(255,0,0,0.3) !important;
+}
+
+.grid.cards .card.clicking {
+    transform: scale(0.9) rotate(5deg) !important;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4) !important;
+    color: white !important;
 }
