@@ -1,17 +1,15 @@
-# Welcome to MkDocs
+# Unity实用技巧
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## 效率提升
+- 使用快捷键提高操作效率
+- 善用预制体（Prefab）管理重复元素
+- 合理组织项目文件夹结构
 
-## Commands
+## 性能优化
+- 减少Draw Call的方法
+- 资源压缩与管理
+- 脚本优化技巧
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## 相关链接
+- 返回[Unity首页](index.md)
+- 查看[Unity基础入门](basics.md)

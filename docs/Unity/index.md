@@ -1,17 +1,11 @@
-# Welcome to MkDocs
+# Unity开发专区
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+欢迎来到Unity开发专区，这里收集了Unity开发相关的基础知识和实用技巧。
 
-## Commands
+## 内容分类
+- [Unity基础入门](basics.md) - 适合初学者的基础知识
+- [Unity实用技巧](tips.md) - 提升开发效率的技巧总结
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## 相关链接
+- 返回[博客首页](../index.md)
+- 前往[C#专区](../CSharp/index.md)

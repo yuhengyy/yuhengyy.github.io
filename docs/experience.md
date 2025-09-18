@@ -1,17 +1,15 @@
-# Welcome to MkDocs
+# 工作经验
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## 主要经历
+- 参与多个Unity项目的开发工作
+- 负责游戏核心系统的设计与实现
+- 优化游戏性能，提升用户体验
 
-## Commands
+## 项目经验
+- 开发过2D/3D类型游戏
+- 实现多种游戏玩法机制
+- 集成第三方SDK与服务
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## 相关链接
+- 返回[首页](index.md)
+- 查看我的[简历](resume.md)

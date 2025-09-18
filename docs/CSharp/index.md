@@ -1,17 +1,11 @@
-# Welcome to MkDocs
+# C#编程专区
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+欢迎来到C#编程专区，这里整理了C#编程的基础知识和高级特性。
 
-## Commands
+## 内容分类
+- [C#基础语法](fundamentals.md) - 变量、函数、类等基础概念
+- [C#高级特性](advanced.md) - 委托、泛型、异步等高级内容
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## 相关链接
+- 返回[博客首页](../index.md)
+- 前往[Unity专区](../Unity/index.md)
