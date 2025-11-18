@@ -9,6 +9,14 @@ echo.
 
 cd /d "E:\_Project\yuhengyyKnowledge"
 
+:check_changes
+echo 检查文件变更...
+git status | find "nothing to commit" > nul
+if not errorlevel 1 (
+    echo ⚠️ 工作区没有更改，跳过提交步骤
+    goto deploy
+)
+
 :input_message
 set /p "commit_msg=请输入提交说明: "
 if "%commit_msg%"=="" (
@@ -39,11 +47,10 @@ if errorlevel 1 (
 echo 提交更改...
 git commit -m "%commit_msg%"
 if errorlevel 1 (
-    echo ❌ 提交失败！
-    pause
-    exit /b 1
+    echo ⚠️ 提交失败或无更改可提交，继续部署流程...
 )
 
+:deploy
 echo 检查本地提交状态...
 git status
 echo.
@@ -52,12 +59,7 @@ echo 尝试推送到源代码仓库 (main分支)...
 git push origin main
 if errorlevel 1 (
     echo ⚠️ 推送到main分支失败，可能是网络问题
-    echo.
     echo 当前状态: 本地有未推送的提交
-    echo 您可以使用以下命令手动推送:
-    echo git push origin main
-    echo.
-    echo 继续尝试部署网站到GitHub Pages...
 )
 
 echo 部署到GitHub Pages (gh-pages分支)...
