@@ -20,7 +20,7 @@
     
     
       
-        <title>Framework notes - Yuhengyy的学习笔记</title>
+        <title>框架相关 - Yuhengyy的学习笔记</title>
       
     
     
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Framework notes
+              框架相关
             
           </span>
         </div>
@@ -387,6 +387,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -395,16 +397,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      框架相关
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="框架相关">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       程序基础框架
@@ -412,8 +404,8 @@
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#qframework" class="md-nav__link">
     <span class="md-ellipsis">
       QFramework
@@ -421,18 +413,13 @@
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#mvc" class="md-nav__link">
     <span class="md-ellipsis">
       MVC 框架
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -452,10 +439,8 @@
 
 
 
-  <h1>Framework notes</h1>
-
-<h2 id="_1">框架相关<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="_2">程序基础框架<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h1 id="_1">框架相关<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">程序基础框架<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>唐老狮程序基础框架算是我第一次接触的类框架内容，难度不高，自己琢磨也是能够写出类似的内容的，与其说框架，不如说 Tool Function 更加合适，因为其工具作用使用广泛但扩展性弱</p>
 <p>例如把单例写成循环自调用泛型，整合资源加载，音频播放器，事件注册模块这些进行封装</p>
 <p>难度部分主要在 UIRoot 的创建和对象池功能的实现
@@ -463,7 +448,7 @@
 毕设使用了 B 站 up 奥飒姆 Awesom （https://space.bilibili.com/641773200 ）的对象池加载模块
 所以难点的对象池框架模块和 UI 框架模块都是我曾经接触过的内容</p>
 <p>所以此框架最大用处并非学习，而是复习，熟知我曾经会的内容（正如我开头介绍，很久没碰 Unity 和 C#了）</p>
-<h3 id="qframework">QFramework<a class="headerlink" href="#qframework" title="Permanent link">&para;</a></h3>
+<h2 id="qframework">QFramework<a class="headerlink" href="#qframework" title="Permanent link">&para;</a></h2>
 <p>QFramework 算是我真正意义上接触的第一个框架
 我的总结：小，巧，泛，通</p>
 <blockquote>
@@ -505,7 +490,7 @@
 </blockquote>
 <p>游戏制作需要熟知了整个框架和老师自己开发的工具，哪怕到目前为止，我还没学明白 QFramework 和其制作游戏的流程
 不过正因为如此，跟着做完后虽然迷迷糊糊，但反而进步巨大，在只跟着类幸存者这一个项目就能熟悉下面的 MVC 框架</p>
-<h3 id="mvc">MVC 框架<a class="headerlink" href="#mvc" title="Permanent link">&para;</a></h3>
+<h2 id="mvc">MVC 框架<a class="headerlink" href="#mvc" title="Permanent link">&para;</a></h2>
 <p>MVC 框架，难度骤减，因为先了解的 QFramework ,顺其自然理解，有点像逆向教学，先来个猛的然后学习基础</p>
 <p>1，先是全部代码整合到一个脚本（项目逻辑不难，就是在脚本内有数据，按钮，点击按钮让玩家升级然后自己通知自己）</p>
 <p>2，然后把参数分类，分别匹配 MVC 三个字母创建三个脚本分别控制，数据（M），UI（V），按钮点击事件（C）（以此制作了一个简单的 MVC 框架）</p>
