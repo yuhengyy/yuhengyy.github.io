@@ -46,51 +46,9 @@ extra_javascript:
 nav:
   - 首页:
       - 首页: index.md
-      - 测试js: test-features.md
-      - 课程总览: courses/index.md
-      - Unity项目_课程: courses/unity/index.md
-      - C#项目_课程: courses/csharp/index.md
-      - 知识库: knowledge/index.md
-      - 学习进度追踪: progress/index.md
-      - 👤 关于我: about/index.md
-
-  - Unity项目_课程:
-      - 游戏开发:
-          - 三消游戏: courses/unity/match3-game.md
-          - 三消游戏(Dotween版): courses/unity/match3-dotween.md
-          - 斗地主游戏: courses/unity/landlord-game.md
-      - 系统框架:
-          - 对话系统（免费版）: courses/unity/dialogue-system-free.md
-          - 对话系统（付费版）: courses/unity/dialogue-system-pro.md
-          - 物品工具包: courses/unity/item-toolkit.md
-          - A星导航: courses/unity/astar-navigation.md
-          - 工具包: courses/unity/utility-toolkit.md
-      - QFramework学习:
-          - QFramework创建: courses/unity/qframework-create.md
-          - QFramework学习: courses/unity/qframework-study.md
-          - QFramework简易游戏: courses/unity/qframework-games.md
-
-  - C#项目_课程:
-      - 算法实现:
-          - 优先队列: courses/csharp/priority-queue.md
-      - 综合应用:
-          - 唐C#综合案例: courses/csharp/tang-comprehensive.md
-      - 网络编程:
-          - TCP网络通信: courses/unity/tcp-network.md
-
-  - 知识库:
-      - Unity笔记: knowledge/unity-notes.md
-      - C#笔记: knowledge/csharp-notes.md
-      - 问题记录: knowledge/problems.md
-      - 学习心得: knowledge/reflections.md
-
-  - 进度追踪:
-      - 学习计划: progress/plan.md
-      - 完成情况: progress/completed.md
-      - 待学习: progress/todo.md
-  - 关于我:
-      - 个人简历: about/resume.md
-      - 学习目标: about/goals.md
+      - 学习经历[主学习和小项目工具]: knowledge/index.md
+      - Unity [游戏项目]: projects/unity/index.md
+      - C#[网络项目]: knowledge/net-notes.md
 
 # 其他配置
 copyright: Copyright &copy; 2025 Yuhengyy · 个人学习记录
