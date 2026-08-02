@@ -1593,6 +1593,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#tcp-udp-kcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        协议对比（TCP / UDP / KCP）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="协议对比（TCP / UDP / KCP）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        粘包处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2069,6 +2097,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#tcp-udp-kcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        协议对比（TCP / UDP / KCP）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="协议对比（TCP / UDP / KCP）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        粘包处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2114,8 +2170,23 @@ Socket udpSkt = new Socket(pt.AddressFamily, SocketType.Dgram, ProtocolType.Udp)
 <blockquote>
 <p>但是这里就不懂了，除了心跳消息和重新分发，很多逻辑又看不懂，无法理解基于 UDP 实现 KCP 的结构，但是因为我后面跟随的课程是《状态同步 MMO 案例课程》所以看完课程加以实现后完并，而是搁置自己的不懂</p>
 </blockquote>
+<h2 id="tcp-udp-kcp">协议对比（TCP / UDP / KCP）<a class="headerlink" href="#tcp-udp-kcp" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>TCP</strong>：追求绝对可靠和稳定，速度是次要的（下载文件、网页浏览）</li>
+<li><strong>UDP</strong>：追求极速，可靠性交给应用层处理（视频流、DNS 查询、VoIP）</li>
+<li><strong>KCP</strong>：在 UDP 基础上，自己实现了一套为实时性优化的可靠传输机制，目标是比 TCP 延迟更低（实时游戏、语音通话）</li>
+</ul>
+<p>所以「基于 UDP 实现 KCP」意思是：在 UDP 这个快速但不可靠的通道上，用 KCP 算法库实现可靠传输——既能享受 UDP 的速度，又能获得类似 TCP 的可靠性，并且延迟更低。</p>
+<p>注意：KCP 不是 UDP，也不是通信协议，而是基于 UDP 的算法实现。</p>
+<h3 id="_3">粘包处理<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>使用数据头和数据体：</p>
+<ul>
+<li>数据头为 int 4 字节，存储 body 的 byte 数组长度</li>
+<li>数据体为各种数据</li>
+</ul>
+<p>处理方法：无论接收到什么，始终按照 <code>byte[4] + byte[x]</code> 进行接收。如果头没接完，下个包体的前 <code>4-n</code> 位组合成头；如果身体没接完，只有 m，下个包体的前 <code>x-m</code> 组成身体。哪怕一个包体只存在 <code>byte[1]</code>，都会变成头或者身体一部分。</p>
 <hr />
-<p>🔙 <a href="../../">回到上一级（首页）</a><br />
+<p>🔙 <a href="../">回到上一级（知识库索引）</a><br />
 🏠 <a href="../../">返回首页</a></p>
 
 

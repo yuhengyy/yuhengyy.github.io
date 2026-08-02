@@ -1375,6 +1375,73 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        属性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="属性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自动属性（编译器快捷方式）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        委托和事件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="委托和事件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#action-func" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action 与 Func（日常主力）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么需要 event？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1969,6 +2036,73 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        属性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="属性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自动属性（编译器快捷方式）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        委托和事件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="委托和事件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#action-func" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action 与 Func（日常主力）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么需要 event？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2009,6 +2143,55 @@
 </li>
 </ul>
 <p>（课程有相关练习，基本上一个不落，最后大项目实践实现了贪吃蛇和飞行棋，因为纯靠刷新控制台文字进行游玩，感觉比 Unity 同类型游戏还麻烦，好处是练习了自己的纯逻辑思维和断点调试能力）</p>
+<h2 id="_2">属性<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>使用 <code>{ get; set; }</code> 为什么就存在保护性了？属性看起来像字段，但本质是方法：</p>
+<ul>
+<li><code>get</code> → 相当于一个返回私有字段值的方法</li>
+<li><code>set</code> → 相当于一个接收参数并验证后赋值的方法</li>
+</ul>
+<p>保护性不是让代码「更安全」，而是让数据行为「更可控」。通过属性这个「守门员」来确保数据的合法性，这才是面向对象封装的核心思想。<code>get</code> / <code>set</code> 可以分别设置，控制其访问权限。</p>
+<h3 id="_3">自动属性（编译器快捷方式）<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">User</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// 一行搞定</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>编译器会自动生成后备字段和访问器。自动属性适合非业务逻辑（如名字显示、id 设置）；需要验证数据（如钱不能为负数）时，在 <code>set</code> 里增加逻辑。</p>
+<p><strong>自动属性 ≠ 有保护性</strong>，它只是语法糖；<strong>真正的保护性来自业务逻辑验证</strong>。</p>
+<h2 id="_4">委托和事件<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>委托是<strong>类型安全的函数指针</strong>，可以把方法当作参数传递，实现回调和解耦。</p>
+<h3 id="action-func">Action 与 Func（日常主力）<a class="headerlink" href="#action-func" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>返回值</th>
+<th>泛型含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Action</strong></td>
+<td>无 (void)</td>
+<td>所有泛型都是参数类型</td>
+</tr>
+<tr>
+<td><strong>Func</strong></td>
+<td>有</td>
+<td>前面是参数类型，<strong>最后一个是返回类型</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="event">为什么需要 event？<a class="headerlink" href="#event" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// 不用 event — 外部可以清空订阅、随便触发</span>
+<span class="k">public</span><span class="w"> </span><span class="n">Action</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">OnHealthChanged</span><span class="p">;</span>
+
+<span class="c1">// 用 event — 外部只能 += / -=</span>
+<span class="k">public</span><span class="w"> </span><span class="k">event</span><span class="w"> </span><span class="n">Action</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">OnHealthChanged</span><span class="p">;</span>
+</code></pre></div>
+<p><strong>event 的三重保护</strong>：外部不能直接调用 Invoke；不能用 <code>=</code> 赋值；只能 <code>+=</code> / <code>-=</code> 订阅和取消。</p>
+<p>Unity 中：纯逻辑解耦用 <strong>C# Event</strong>（性能好）；UI 按钮等需要 Inspector 配置用 <strong>UnityEvent</strong>。</p>
+<p>常见陷阱：忘记在 <code>OnDestroy</code> 中 <code>-=</code> 取消订阅；无人订阅时用 <code>?.Invoke()</code> 防空引用。</p>
 <hr />
 <p>🔙 <a href="../">回到上一级（知识库索引）</a><br />
 🏠 <a href="../../">返回首页</a></p>

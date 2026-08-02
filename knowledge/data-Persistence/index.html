@@ -1436,6 +1436,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#scriptableobject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScriptableObject
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScriptableObject">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        个人对数据持久化理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2035,6 +2063,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#scriptableobject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScriptableObject
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScriptableObject">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        个人对数据持久化理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2084,6 +2140,46 @@ Playprefs 虽然简单，就是 string,bool,int 这三种类型通过唯一 key 
 <blockquote>
 <p>附言：一个月之后我巩固网络开发，后续学习所谓的 NetMsg 和 CMD 结构才发现，它能完全忽略空引用，传递 byte[]长度实际上可以更小，达到 30%以下</p>
 </blockquote>
+<h2 id="scriptableobject">ScriptableObject<a class="headerlink" href="#scriptableobject" title="Permanent link">&para;</a></h2>
+<ul>
+<li>可视化配置 — 策划/美术可以直接编辑</li>
+<li>保持引用 — 不丢失 Unity 对象关系</li>
+<li>设计期存在 — 成为项目资产的一部分</li>
+<li>运行时共享 — 多个系统访问同一数据源</li>
+</ul>
+<p><strong>外挂怎么办？</strong> 采用数据分离，SO 并不存储真正的数据，而是资产为主：</p>
+<ul>
+<li>客户端 SO：名字、图标、特效、声音、模型</li>
+<li>服务器数据：伤害、CD、价格、成功率、成长数值</li>
+</ul>
+<h3 id="_3">个人对数据持久化理解<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>在单机上，与数据相关使用二进制或者 Json、ScriptableObject，比如玩家进度、背包数据、某关卡出怪速度和怪物数值，用于资产引用和测试时最方便（可视化 + 随意更改）。PlayerPrefs 则是音量大小、亮度等——明显区别是，网络游戏中换了设备就重置的设置，大多用 PlayerPrefs 存储。</p>
+<table>
+<thead>
+<tr>
+<th>数据归属</th>
+<th>存储方案</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>属于这台设备</strong></td>
+<td>PlayerPrefs</td>
+<td>键位设置、画质选项</td>
+</tr>
+<tr>
+<td><strong>属于这个玩家</strong></td>
+<td>二进制/JSON</td>
+<td>等级、装备、进度</td>
+</tr>
+<tr>
+<td><strong>属于这个游戏</strong></td>
+<td>ScriptableObject</td>
+<td>角色设计、关卡模板</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <p>🔙 <a href="../">回到上一级（知识库索引）</a><br />
 🏠 <a href="../../">返回首页</a></p>
