@@ -1,11 +1,14 @@
-# 课程项目 - 总索引
+# 课程项目 — 总索引
 
-本目录是所有实战项目的核心汇总，按「Unity项目」和「C#项目」分类，包含具体的游戏开发、系统框架与编程实现：
+本目录是实战项目的汇总，按 Unity 与 C# 分类。代码在独立 Git 仓库，本站为叙述层。
 
-- [Unity项目_课程](unity/index.md)：基于Unity的游戏和系统项目（如三消游戏、对话系统、QFramework学习）
-- [C#项目_课程](csharp/index.md)：基于C#的算法与编程项目（如优先队列、TCP网络通信）
+| 分区 | 说明 |
+|------|------|
+| [Study C# 学习](csharp/study-csharp.md) | 2026 主学习仓（BaseKnowledge + 工具库） |
+| [C# 项目归档](csharp/index.md) | 优先队列、唐老狮综合等 |
+| [Unity 项目](unity/index.md) | MMO、QFramework、小游戏等 |
 
-所有项目均包含核心实现思路和关键代码，方便复现和回顾。
+多仓对照见 [工作区仓库索引](../workspace/repos.md)。
 
 ---
 🔙 [回到上一级（首页）](../index.md)  

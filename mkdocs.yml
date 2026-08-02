@@ -42,15 +42,55 @@ extra_css:
 extra_javascript:
   - javascripts/extra.js
 
-# 导航配置 - 重构为以课程项目为核心
+# 导航：工作区 → 代码仓库 → 学习笔记 → 进度/关于
 nav:
-  - 首页:
-      - 首页: index.md
-      - 学习经历[主学习和小项目工具]: knowledge/index.md
-      - Unity [游戏项目]: projects/unity/index.md
-      - C#[网络项目]: knowledge/net-notes.md
+  - 首页: index.md
+  - 工作区:
+      - 概览: workspace/index.md
+      - 仓库索引: workspace/repos.md
+      - 发布说明: workspace/publish.md
+  - Study C# 学习:
+      - 仓库概览: projects/csharp/study-csharp.md
+      - 项目索引: projects/csharp/index.md
+      - 优先队列: projects/csharp/priority-queue.md
+      - 唐老狮综合: projects/csharp/tang-comprehensive.md
+  - Unity 项目:
+      - 索引: projects/unity/index.md
+      - MMO 项目: projects/unity/mmo-game.md
+      - 类幸存者: projects/unity/qframework-sgame.md
+      - QFramework 学习: projects/unity/qframework-study.md
+      - QFramework 创建: projects/unity/qframework-create.md
+      - QFramework 游戏: projects/unity/qframework-games.md
+      - 三消游戏: projects/unity/match3-game.md
+      - 三消 DOTween: projects/unity/match3-dotween.md
+      - 斗地主: projects/unity/landlord-game.md
+      - TCP 网络: projects/unity/tcp-network.md
+      - A* 寻路: projects/unity/astar-navigation.md
+      - 对话系统(免费): projects/unity/dialogue-system-free.md
+      - 对话系统(Pro): projects/unity/dialogue-system-pro.md
+      - 道具工具: projects/unity/item-toolkit.md
+      - 通用工具: projects/unity/utility-toolkit.md
+  - 学习笔记:
+      - 索引: knowledge/index.md
+      - C# 笔记: knowledge/csharp-notes.md
+      - 数据持久化: knowledge/data-Persistence.md
+      - 框架笔记: knowledge/framework-notes.md
+      - 问题记录: knowledge/problems.md
+      - 学习心得: knowledge/reflections.md
+      - Unity 笔记: knowledge/unity-notes.md
+      - 网络基础: knowledge/net-notes.md
+  - 课程项目:
+      - 索引: projects/index.md
+  - 进度追踪:
+      - 索引: progress/index.md
+      - 已完成: progress/completed.md
+      - 计划: progress/plan.md
+      - 待办: progress/todo.md
+  - 关于:
+      - 索引: about/index.md
+      - 目标: about/goals.md
+      - 简历: about/resume.md
 
-# 其他配置
 copyright: Copyright &copy; 2025 Yuhengyy · 个人学习记录
 
 extra:

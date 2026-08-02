@@ -1,34 +1,35 @@
 ## 我的技术学习笔记
 
-> 这里是我学习 Unity 和 C#的个人知识库，主要记录课程项目实践和学习心得。
+> 个人 Unity 与 C# 学习记录。  
+> 代码在独立 Git 仓库，本站是**叙述与索引层**。
 
-### 🗂️ 项目分类浏览
+### 工作区
 
-[学习经历（主学习和小项目工具）](knowledge/index.md)
+| 入口 | 说明 |
+|------|------|
+| [工作区概览](workspace/index.md) | StudyProject 三层结构 |
+| [仓库索引](workspace/repos.md) | 多 Git 仓库对照表 |
+| [发布说明](workspace/publish.md) | 工作台构建与提交 |
 
-> - 学习的知识点+实现了什么工具
-> - 例如数据持久化的数据管理器
-> - UI 事件监听器
-> - 自定义序列化反序列化算法
+### 代码仓库（博客叙述）
 
-[Unity 项目](projects/unity/index.md)
+| 入口 | 说明 |
+|------|------|
+| [Study C# 学习](projects/csharp/study-csharp.md) | 2026 主学习仓（BaseKnowledge + 工具库） |
+| [C# 项目归档](projects/csharp/index.md) | 优先队列、唐老狮综合等 |
+| [Unity 项目](projects/unity/index.md) | MMO、QFramework、小游戏等 |
 
-> - 网络游戏开发：MMO 全栈开发，斗地主
-> - QFramework 系列学习：主要完成类幸存者项目
-> - 单机游戏开发：2D 肉鸽 Demo，TPS 游戏，RPG 功能 Demo 演示
+### 学习笔记
 
-[C#项目（网络开发基础）](knowledge/net-notes.md)
+[学习经历索引](knowledge/index.md) — C# 四部曲、数据持久化、框架、网络基础等
 
-网络编程：TCP 通信多人聊天室
-在学习经历里面声明过：[网络开发基础](knowledge/net-notes.md)
+### 其他
 
-以下功能均实现但未整理成文档
+| 入口 | 说明 |
+|------|------|
+| [进度追踪](progress/index.md) | 计划与完成情况 |
+| [关于](about/index.md) | 目标与简历 |
 
-> - 算法实现：优先级队列，A\*寻路等
-> - 网络编程：TCP 通信多人聊天室，等
-> - 工具：多平台 Log 日志工具
-> - 飞行棋，贪吃蛇等小游戏
+---
 
-#### 📝 关于本站
-
-<small>这是一个个人学习记录网站，主要用来整理和沉淀技术知识。</small>
+<small>工作区根目录：`StudyProject` · GitHub：[yuhengyy](https://github.com/yuhengyy)</small>

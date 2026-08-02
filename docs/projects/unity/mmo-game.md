@@ -117,5 +117,5 @@ PERoot.UISys.LoginWnd 或者 PERoot.UISys.MajorWnd.HPItemComp，虽然这位老�
 
 ---
 
-🔙 [回到上一级（Unity 项目索引）](../../index.md)  
+🔙 [回到上一级（Unity 项目索引）](index.md)  
 🏠 [返回首页](../../index.md)

@@ -1,18 +1,29 @@
-# C#项目_课程 - 索引页
+# C# 项目 — 索引
 
-本目录包含C#相关的所有课程项目，按「算法实现」「综合应用」「网络编程」分类，具体如下：
+本目录包含 C# 相关的课程项目与实践。
 
-## 1. 算法实现
-- [优先队列](priority-queue.md)：基于堆结构实现的优先队列，支持按优先级出队（老师Plane）
+## Study 学习仓库（2026 · 当前主仓）
 
-## 2. 综合应用
-- [唐老狮C#综合案例](tang-comprehensive.md)：整合多个C#知识点的综合案例（如面向对象、泛型、委托）
+> [Study C# 学习仓库](study-csharp.md) — 代码：[GitHub](https://github.com/yuhengyy/StudyProject-learning-src-Study)
 
-## 3. 网络编程
-- [TCP网络通信](../unity/tcp-network.md)：基于TCP协议实现的客户端与服务器通信案例，实现了Unity客户端与服务器通信（老师Plane）
+包含 `BaseKnowledge` 知识导航、`Logger` / `Timer` / `PriorityQueue` 工具库及 Sample。  
+仓库说明见 [工作区仓库索引](../../workspace/repos.md)。
 
-所有项目均包含完整的代码实现和逻辑说明，适合巩固C#编程基础。
+## 早期课程归档
+
+### 1. 算法实现
+
+- [优先队列](priority-queue.md)：小顶堆实现（已迁入 Study 仓库 `PriorityQueue` 项目）
+
+### 2. 综合应用
+
+- [唐老狮 C# 综合案例](tang-comprehensive.md)：面向对象、泛型、委托等综合练习
+
+### 3. 网络编程
+
+- [TCP 网络通信](../unity/tcp-network.md)：Unity 客户端与服务器通信（老师 Plane）
 
 ---
+
 🔙 [回到上一级（课程项目总索引）](../index.md)  
 🏠 [返回首页](../../index.md)
