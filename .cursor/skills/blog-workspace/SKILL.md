@@ -76,7 +76,7 @@ Unity 项目      → projects/unity/（大项目归档）
 
 1. 双击 `StudyProject/工作台.cmd`
 2. 博客模块 → **启动预览**（http://127.0.0.1:8000/）
-3. 确认后 **构建并发布**，填写中文提交说明
+3. 确认后 **构建并发布**，填写中文提交说明（推送时自动 `gh-deploy` 到 `gh-pages`）
 
 或在本仓目录：
 
@@ -84,8 +84,11 @@ Unity 项目      → projects/unity/（大项目归档）
 cd publish/yuhengyy.github.io
 git add .
 git -c user.name=yhyy -c user.email=zhoujiayuan233@gmail.com commit -m "docs: 说明"
-git push
+git push origin main
+python -m mkdocs gh-deploy --force
 ```
+
+线上站点读 **gh-pages** 分支，不是 `main`。
 
 MkDocs 进程自动设置 `NO_MKDOCS_2_WARNING=1`。
 
