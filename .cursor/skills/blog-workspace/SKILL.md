@@ -12,12 +12,14 @@ description: >-
 
 | 仓库 | 路径 | 放什么 |
 |------|------|--------|
-| **本博客** | `publish/yuhengyy.github.io/` | Markdown 叙述、MkDocs 配置 |
+| **本博客** | `publish/yuhengyy.github.io/` | Markdown 叙述、MkDocs 配置（**公开**） |
+| **私人笔记** | `publish/notes/` | 面试/策划/成长等（**不进 MkDocs**，建议 Private 仓） |
 | **Study 代码** | `learning/src/Study/` | C# 源码，**不在此仓提交** |
 | **元仓库** | `StudyProject/` 根 | 策略文档、`.gitmodules` |
 | **工具** | `tools/` | 工作台 GUI |
 
-**博客 = 展示层；代码 = 源仓。** 文章链到 GitHub 仓库，不拷贝 `.cs` 文件。
+**博客 = 展示层；notes = 私人叙述层；代码 = 源仓。** 文章链到 GitHub 仓库，不拷贝 `.cs` 文件。  
+从 notes 提炼到博客时需脱敏；**禁止**把 `publish/notes` 挂进 `mkdocs.yml`。
 
 ## 主学习仓（工作区核心）
 
@@ -68,7 +70,7 @@ Unity 项目      → projects/unity/（大项目归档）
 | `projects/unity/mmo-game.md` | 未来独立 Unity 仓 | `learning/unity/Projects/...` |
 | `knowledge/*.md` | 跨仓或纯笔记 | — |
 
-权威仓库表：`docs/workspace/repos.md`（与 `StudyProject/tools/config/repos.json` 对齐）
+权威仓库表：源为元仓 `tools/workbench/config/repos.json`；本仓 `docs/workspace/repos.md` 为工作台生成镜像（勿手改）
 
 ## 发布流程（工作台）
 
