@@ -1,7 +1,7 @@
 # 仓库索引
 
 > **勿手改**。与元仓库 `tools/workbench/config/repos.json` 同步（工作台「索引」生成）。
-> 生成时间：2026-08-10 03:14:27
+> 生成时间：2026-08-12 00:00:24
 
 命名规则：路径 `a/b/c` → GitHub 仓库 `StudyProject-a-b-c`。
 
@@ -14,6 +14,8 @@
 | `blog` | 个人博客 | [yuhengyy.github.io](https://github.com/yuhengyy/yuhengyy.github.io) | `publish/yuhengyy.github.io/` | mkdocs |
 | `workbench` | 工作台 Workbench | [StudyProject-tools](https://github.com/yuhengyy/StudyProject-tools) | `tools/workbench/` | dotnet |
 | `unity-learning` | Unity 作品 learning | [StudyProject-learning-unity-Projects-learning](https://github.com/yuhengyy/StudyProject-learning-unity-Projects-learning) | `learning/unity/Projects/learning/` | unity |
+| `notes` | 私人文档 notes | — | `publish/notes/` | other |
+| `shared` | 可迁移类库 shared | — | `shared/` | dotnet |
 
 ## 博客页面 ↔ 代码仓
 
@@ -28,9 +30,7 @@
 
 | GitHub 仓库名 | 路径 |
 |---------------|------|
-| `StudyProject-publish-notes` | `publish/notes/` |
 | `StudyProject-learning-apps-Bookkeeping` | `learning/apps/Bookkeeping/` |
-| `StudyProject-shared` | `shared/` |
 | `StudyProject-learning-unity-Lab-<主题>` | `learning/unity/Lab/<主题>/` |
 | `StudyProject-learning-unity-Projects-<作品>` | `learning/unity/Projects/<作品>/` |
 

@@ -40,8 +40,8 @@ user.email = zhoujiayuan233@gmail.com
 
 ## Cursor Agent
 
-本仓库含 Agent Skill：`.cursor/skills/blog-workspace/SKILL.md`  
-在 StudyProject 根目录打开时，元仓库也有 `.cursor/skills/blog-publish/SKILL.md` 指向此处。
+本仓库含 Agent Skill：`.agents/skills/blog-workspace/SKILL.md`。  
+从 StudyProject 根目录工作时，使用元仓库 `.agents/skills/blog-publish/SKILL.md`。
 
 ---
 

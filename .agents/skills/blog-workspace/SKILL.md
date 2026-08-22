@@ -29,7 +29,7 @@ description: >-
 | **代码源仓** | `StudyProject-learning-src-Study`（元仓库子模块） |
 | **边界** | 博客可公开；Study 仓跟课代码在此维护，不在博客仓提交 |
 
-元仓库规则：`.cursor/rules/workspace-primary-repo.mdc`
+元仓库规则：`.agents/rules/workspace-primary-repo.md`
 
 ## 磁盘与 Git
 
@@ -41,7 +41,7 @@ StudyProject/publish/yuhengyy.github.io/   ← 本仓库（独立 git）
 │   ├── projects/unity/                     ← Unity 项目叙述
 │   └── knowledge/                          ← 专题笔记
 ├── mkdocs.yml                              ← 导航与主题
-└── .cursor/skills/blog-workspace/          ← 本 Skill
+└── .agents/skills/blog-workspace/          ← 本 Skill
 ```
 
 GitHub：`https://github.com/yuhengyy/yuhengyy.github.io.git`  
@@ -134,5 +134,5 @@ source_repo: StudyProject-learning-src-Study
 
 ## 相关 Skill
 
-- StudyProject 元仓库：`.cursor/skills/study-git-repos/SKILL.md`（多仓 / submodule）
-- StudyProject 元仓库：`.cursor/skills/blog-publish/SKILL.md`（从根目录发布时的快捷入口）
+- StudyProject 元仓库：`.agents/skills/study-git-repos/SKILL.md`（多仓 / submodule）
+- StudyProject 元仓库：`.agents/skills/blog-publish/SKILL.md`（从根目录发布时的入口）
