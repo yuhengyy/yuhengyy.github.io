@@ -2472,11 +2472,11 @@ Mac:       ~/Library/Application Support/[公司名]/[产品名]
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1">// Windows/Mac —— 直接读</span>
 <span class="kt">string</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">.</span><span class="n">ReadAllText</span><span class="p">(</span>
-<span class="w">    </span><span class="n">Path</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">Application</span><span class="p">.</span><span class="n">streamingAssetsPath</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;config.json&quot;</span><span class="p">));</span>
+<span class="w">    </span><span class="n">Path</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">Application</span><span class="p">.</span><span class="n">streamingAssetsPath</span><span class="p">,</span><span class="w"> </span><span class="s">"config.json"</span><span class="p">));</span>
 
 <span class="c1">// Android/WebGL —— 必须异步</span>
 <span class="k">using</span><span class="w"> </span><span class="p">(</span><span class="n">UnityWebRequest</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UnityWebRequest</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span>
-<span class="w">    </span><span class="n">Path</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">Application</span><span class="p">.</span><span class="n">streamingAssetsPath</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;video.mp4&quot;</span><span class="p">)))</span>
+<span class="w">    </span><span class="n">Path</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">Application</span><span class="p">.</span><span class="n">streamingAssetsPath</span><span class="p">,</span><span class="w"> </span><span class="s">"video.mp4"</span><span class="p">)))</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="k">yield</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="n">SendWebRequest</span><span class="p">();</span>
 <span class="w">    </span><span class="kt">byte</span><span class="p">[]</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="n">downloadHandler</span><span class="p">.</span><span class="n">data</span><span class="p">;</span>
@@ -2528,14 +2528,14 @@ iOS:     沙盒 tmp 目录
 - 运行时通过 <code>Resources.Load&lt;T&gt;()</code> 加载
 - 支持<strong>子文件夹</strong>（最多一级深度建议）</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// 加载 Prefab</span>
-<span class="n">GameObject</span><span class="w"> </span><span class="n">prefab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Resources</span><span class="p">.</span><span class="n">Load</span><span class="o">&lt;</span><span class="n">GameObject</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Prefabs/Enemy&quot;</span><span class="p">);</span>
+<span class="n">GameObject</span><span class="w"> </span><span class="n">prefab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Resources</span><span class="p">.</span><span class="n">Load</span><span class="o">&lt;</span><span class="n">GameObject</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"Prefabs/Enemy"</span><span class="p">);</span>
 <span class="n">Instantiate</span><span class="p">(</span><span class="n">prefab</span><span class="p">);</span>
 
 <span class="c1">// 加载所有同类型资源</span>
-<span class="n">TextAsset</span><span class="p">[]</span><span class="w"> </span><span class="n">allConfigs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Resources</span><span class="p">.</span><span class="n">LoadAll</span><span class="o">&lt;</span><span class="n">TextAsset</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Configs&quot;</span><span class="p">);</span>
+<span class="n">TextAsset</span><span class="p">[]</span><span class="w"> </span><span class="n">allConfigs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Resources</span><span class="p">.</span><span class="n">LoadAll</span><span class="o">&lt;</span><span class="n">TextAsset</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"Configs"</span><span class="p">);</span>
 
 <span class="c1">// 异步加载</span>
-<span class="n">ResourceRequest</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Resources</span><span class="p">.</span><span class="n">LoadAsync</span><span class="o">&lt;</span><span class="n">Texture</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Backgrounds/Level1&quot;</span><span class="p">);</span>
+<span class="n">ResourceRequest</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Resources</span><span class="p">.</span><span class="n">LoadAsync</span><span class="o">&lt;</span><span class="n">Texture</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"Backgrounds/Level1"</span><span class="p">);</span>
 <span class="k">yield</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">req</span><span class="p">;</span>
 <span class="n">Texture</span><span class="w"> </span><span class="n">tex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="n">asset</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">Texture</span><span class="p">;</span>
 </code></pre></div>
@@ -2560,17 +2560,17 @@ iOS:     沙盒 tmp 目录
 
 <span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MyWindow</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">EditorWindow</span>
 <span class="p">{</span>
-<span class="w">    </span><span class="na">[MenuItem(&quot;Tools/My Custom Window&quot;)]</span>
+<span class="w">    </span><span class="na">[MenuItem("Tools/My Custom Window")]</span>
 <span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">ShowWindow</span><span class="p">()</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">GetWindow</span><span class="o">&lt;</span><span class="n">MyWindow</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;我的工具&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">GetWindow</span><span class="o">&lt;</span><span class="n">MyWindow</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"我的工具"</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">OnGUI</span><span class="p">()</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">GUILayout</span><span class="p">.</span><span class="n">Label</span><span class="p">(</span><span class="s">&quot;这是一个自定义编辑器窗口&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GUILayout</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;点击&quot;</span><span class="p">))</span>
-<span class="w">            </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&quot;Hello!&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">GUILayout</span><span class="p">.</span><span class="n">Label</span><span class="p">(</span><span class="s">"这是一个自定义编辑器窗口"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">GUILayout</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="s">"点击"</span><span class="p">))</span>
+<span class="w">            </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">"Hello!"</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>

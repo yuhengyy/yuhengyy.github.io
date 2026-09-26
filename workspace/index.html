@@ -1904,17 +1904,6 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        三层结构
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
         快速入口
       
     </span>
@@ -1923,7 +1912,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         边界原则
@@ -1952,15 +1941,7 @@
 
 <h1 id="_1">工作区概览<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>本博客是 <strong>StudyProject 学习工作区</strong> 的对外叙述层，与代码仓库分离。</p>
-<h2 id="_2">三层结构<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>StudyProject/                 ← 元仓库（策略、索引、工作台）
-├── learning/                 ← 学习代码（各独立 Git 仓）
-│   └── src/Study/            ← C# 主学习仓
-├── tools/                    ← 工作台 GUI
-├── publish/
-│   └── yuhengyy.github.io/   ← 本博客（你正在阅读）
-└── docs/                     ← 元仓库内部文档（不公开）
-</code></pre></div>
+<p><strong>完整目录树不在此维护</strong>——以元仓库正式图为准（本地 <code>docs/workspace-map.md</code>）；公开仓表见 <a href="repos/">仓库索引</a>（由 <code>repos.json</code> 生成）。</p>
 <table>
 <thead>
 <tr>
@@ -1972,7 +1953,7 @@
 <tbody>
 <tr>
 <td><strong>代码仓</strong></td>
-<td><code>.cs</code>、Unity 工程、工具源码</td>
+<td><code>.cs</code>、Unity、Flutter App、工具源码</td>
 <td>各子仓库独立提交</td>
 </tr>
 <tr>
@@ -1982,12 +1963,12 @@
 </tr>
 <tr>
 <td><strong>元仓库</strong></td>
-<td>多仓策略、Cursor 规则、仓库索引</td>
+<td>多仓策略、Cursor 规则、正式图</td>
 <td><code>StudyProject</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="_3">快速入口<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_2">快速入口<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1998,7 +1979,7 @@
 <tbody>
 <tr>
 <td><a href="repos/">仓库索引</a></td>
-<td>所有 Git 仓库与路径对照</td>
+<td>Git 仓库与路径（生成镜像）</td>
 </tr>
 <tr>
 <td><a href="publish/">发布与提交</a></td>
@@ -2018,11 +1999,11 @@
 </tr>
 </tbody>
 </table>
-<h2 id="_4">边界原则<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_3">边界原则<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>代码只在源仓维护一份</strong>（如 Study、未来 MMO Unity 仓）</li>
-<li><strong>博客只写理解、架构、踩坑与链接</strong>，不拷贝大段源码</li>
-<li><strong>每篇项目文应能追溯到对应 GitHub 仓库</strong>（见 <a href="repos/">仓库索引</a>）</li>
+<li><strong>代码只在源仓维护一份</strong>  </li>
+<li><strong>博客只写理解、架构、踩坑与链接</strong>，不拷贝大段源码  </li>
+<li><strong>项目文应能追溯到对应 GitHub 仓库</strong>（见 <a href="repos/">仓库索引</a>）</li>
 </ol>
 <hr />
 <p>🏠 <a href="../">返回首页</a></p>

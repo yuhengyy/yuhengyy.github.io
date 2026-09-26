@@ -2146,7 +2146,7 @@
 <h2 id="_1">基础网络知识学习<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>依据学完的 C#知识，去学习网络相关内容，虽然曾经也了解过，也使用 TCP 制作过相关的聊天功能并整合到游戏，但是这次还是系统学习了一下</p>
 <p>先是了解基本的 IP 和端口，声明 TCP 或者 UDP，然后传递字符串</p>
-<div class="highlight"><pre><span></span><code>string ip = &quot;127.0.0.1&quot;;
+<div class="highlight"><pre><span></span><code>string ip = "127.0.0.1";
 int port = 8888;
 IPEndPoint pt = new(IPAddress.Parse(ip), port);
 Socket tcpSkt = new Socket(pt.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
