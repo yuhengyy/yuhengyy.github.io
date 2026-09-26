@@ -70,14 +70,14 @@ Unity 项目      → projects/unity/（大项目归档）
 | `projects/unity/mmo-game.md` | 未来独立 Unity 仓 | `learning/unity/Projects/...` |
 | `knowledge/*.md` | 跨仓或纯笔记 | — |
 
-权威仓库表：源为元仓 `tools/workbench/config/repos.json`；本仓 `docs/workspace/repos.md` 为工作台生成镜像（勿手改）
+权威仓库表：源为元仓 `config/repos.json`；本仓 `docs/workspace/repos.md` 为工作台生成镜像（勿手改）
 
 ## 发布流程（工作台）
 
 用户未明确要求时 **不要** commit / push。
 
 1. 双击 `StudyProject/工作台.cmd`
-2. 博客模块 → **启动预览**（http://127.0.0.1:8000/）
+2. 博客模块 → **启动预览**（地址以工作台显示为准）
 3. 确认后 **构建并发布**，填写中文提交说明（推送时自动 `gh-deploy` 到 `gh-pages`）
 
 或在本仓目录：

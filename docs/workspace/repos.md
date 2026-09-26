@@ -1,7 +1,7 @@
 # 仓库索引
 
-> **勿手改**。与元仓库 `tools/workbench/config/repos.json` 同步（工作台「索引」生成）。
-> 生成时间：2026-08-12 00:00:24
+> **勿手改**。与元仓库 `config/repos.json` 同步（工作台「索引」生成）。
+> 生成时间：2026-09-26 12:55:34
 
 命名规则：路径 `a/b/c` → GitHub 仓库 `StudyProject-a-b-c`。
 
@@ -13,7 +13,7 @@
 | `study` | C# 学习 Study | [StudyProject-learning-src-Study](https://github.com/yuhengyy/StudyProject-learning-src-Study) | `learning/src/Study/` | dotnet |
 | `blog` | 个人博客 | [yuhengyy.github.io](https://github.com/yuhengyy/yuhengyy.github.io) | `publish/yuhengyy.github.io/` | mkdocs |
 | `workbench` | 工作台 Workbench | [StudyProject-tools](https://github.com/yuhengyy/StudyProject-tools) | `tools/workbench/` | dotnet |
-| `unity-learning` | Unity 作品 learning | [StudyProject-learning-unity-Projects-learning](https://github.com/yuhengyy/StudyProject-learning-unity-Projects-learning) | `learning/unity/Projects/learning/` | unity |
+| `unity-baselearning` | Unity 基础学习 baselearning | [StudyProject-learning-unity-Projects-baselearning](https://github.com/yuhengyy/StudyProject-learning-unity-Projects-baselearning) | `learning/unity/Projects/baselearning/` | unity |
 | `notes` | 私人文档 notes | — | `publish/notes/` | other |
 | `shared` | 可迁移类库 shared | — | `shared/` | dotnet |
 
