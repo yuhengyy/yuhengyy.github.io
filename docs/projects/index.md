@@ -8,7 +8,7 @@
 | [C# 项目归档](csharp/index.md) | 优先队列、唐老狮综合等 |
 | [Unity 项目](unity/index.md) | MMO、QFramework、小游戏等 |
 
-多仓对照见 [工作区仓库索引](../workspace/repos.md)。
+公开代码来源见 [代码来源](../workspace/repos.md)。
 
 ---
 🔙 [回到上一级（首页）](../index.md)  

@@ -7,7 +7,7 @@
 > [Study C# 学习仓库](study-csharp.md) — 代码：[GitHub](https://github.com/yuhengyy/StudyProject-learning-src-Study)
 
 包含 `BaseKnowledge` 知识导航、`Logger` / `Timer` / `PriorityQueue` 工具库及 Sample。  
-仓库说明见 [工作区仓库索引](../../workspace/repos.md)。
+相关仓库见 [代码来源](../../workspace/repos.md)。
 
 ## 早期课程归档
 

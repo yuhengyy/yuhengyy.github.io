@@ -1,18 +1,11 @@
 @echo off
 chcp 65001 > nul
-title MkDocs服务器
-echo ========================================
-echo           启动 MkDocs 服务器
-echo ========================================
-echo.
-
-cd /d "E:\_Project\yuhengyyKnowledge"
-
-echo 正在启动本地服务器...
-echo 本地访问: http://127.0.0.1:8000
-echo 按 Ctrl+C 停止服务器
-echo.
-echo ====================== 服务器日志 ======================
-echo.
-
-mkdocs serve
+if not exist "%~dp0.venv\Scripts\python.exe" (
+    echo Run scripts\Setup-Blog.cmd first.
+    pause
+    exit /b 1
+)
+"%~dp0.venv\Scripts\python.exe" -B "%~dp0scripts\blog.py" serve
+set "BLOG_EXIT=%errorlevel%"
+if not "%BLOG_EXIT%"=="0" pause
+exit /b %BLOG_EXIT%

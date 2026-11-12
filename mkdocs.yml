@@ -1,22 +1,57 @@
-site_name: Yuhengyy的学习笔记
-site_description: 个人Unity与C#学习记录，课程项目实践与知识点整理
+site_name: Yuhengyy 的小站
+site_description: 把好奇心写成日常。关于 Unity、C#，和那些值得记录的小发现。
 site_author: Yuhengyy
+site_url: https://yuhengyy.github.io/
 
 theme:
   name: material
+  custom_dir: overrides
+  language: zh
+  font: false
+  logo: assets/brand/leaf.svg
+  favicon: assets/brand/leaf.svg
   palette:
-    primary: indigo
-    accent: blue
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: 切换到夜间
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到白天
   features:
+    - navigation.instant
+    - navigation.instant.progress
     - navigation.tabs
-    - navigation.expand
     - navigation.sections
     - navigation.indexes
+    - navigation.top
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
     - content.tabs.link
     - content.code.annotate
+    - content.code.copy
 
 plugins:
   - search
+  - blog:
+      blog_dir: journal
+      authors: false
+      post_date_format: yyyy年M月d日
+      post_url_format: "{slug}"
+      archive_name: 按年归档
+      categories_name: 分类
+      pagination_per_page: 6
+      draft_on_serve: false
+  - tags
+
+hooks:
+  - scripts/site_hooks.py
 
 markdown_extensions:
   - admonition
@@ -30,6 +65,10 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
@@ -42,19 +81,21 @@ extra_css:
 extra_javascript:
   - javascripts/extra.js
 
-# 导航：工作区 → 代码仓库 → 学习笔记 → 进度/关于
+# 个人博客入口；旧文章 URL 保留，随记和归档由博客插件维护。
 nav:
   - 首页: index.md
-  - 工作区:
-      - 概览: workspace/index.md
-      - 仓库索引: workspace/repos.md
-      - 发布说明: workspace/publish.md
-  - Study C# 学习:
+  - 文章: articles/index.md
+  - 随记:
+      - journal/index.md
+  - 标签: tags/index.md
+  - 笔记:
+    - projects/index.md
+    - C#:
       - 仓库概览: projects/csharp/study-csharp.md
       - 项目索引: projects/csharp/index.md
       - 优先队列: projects/csharp/priority-queue.md
       - 唐老狮综合: projects/csharp/tang-comprehensive.md
-  - Unity 项目:
+    - Unity:
       - 索引: projects/unity/index.md
       - MMO 项目: projects/unity/mmo-game.md
       - 类幸存者: projects/unity/qframework-sgame.md
@@ -70,7 +111,7 @@ nav:
       - 对话系统(Pro): projects/unity/dialogue-system-pro.md
       - 道具工具: projects/unity/item-toolkit.md
       - 通用工具: projects/unity/utility-toolkit.md
-  - 学习笔记:
+    - 技术笔记:
       - 索引: knowledge/index.md
       - C# 笔记: knowledge/csharp-notes.md
       - 数据持久化: knowledge/data-Persistence.md
@@ -79,9 +120,7 @@ nav:
       - 学习心得: knowledge/reflections.md
       - Unity 笔记: knowledge/unity-notes.md
       - 网络基础: knowledge/net-notes.md
-  - 课程项目:
-      - 索引: projects/index.md
-  - 进度追踪:
+    - 学习进度:
       - 索引: progress/index.md
       - 已完成: progress/completed.md
       - 计划: progress/plan.md
@@ -90,10 +129,22 @@ nav:
       - 索引: about/index.md
       - 目标: about/goals.md
       - 简历: about/resume.md
+      - 本站说明: workspace/index.md
+      - 代码来源: workspace/repos.md
+      - 写作指南: workspace/writing.md
+      - 预览与发布: workspace/publish.md
 
-copyright: Copyright &copy; 2025 Yuhengyy · 个人学习记录
+copyright: Copyright &copy; 2025–2026 Yuhengyy
 
 extra:
+  generator: false
+  featured_posts:
+    - journal/posts/a-new-chapter.md
+    - projects/unity/mmo-game.md
+    - knowledge/framework-notes.md
+    - knowledge/data-Persistence.md
+    - projects/csharp/priority-queue.md
+    - knowledge/net-notes.md
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/yuhengyy

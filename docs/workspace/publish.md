@@ -1,49 +1,39 @@
-# 发布与提交
+# 预览与发布
 
-本博客由 **StudyProject 工作台** 管理构建与发布。
+博客使用自己的 Python 环境和依赖清单，可以独立完成以下操作。在博客目录打开 PowerShell 后执行。
 
-## 日常流程
+## 安装依赖
 
-1. 在 `StudyProject` 根目录双击 **`工作台.cmd`**
-2. 打开 **博客** 模块
-3. **启动预览** — 自动打开 http://127.0.0.1:8000/
-4. 确认无误后 **构建并发布**（填写提交说明；勾选推送时会同步更新 `main` 与 `gh-pages`）
-
-## 双分支说明
-
-| 分支 | 内容 | 谁在读 |
-|------|------|--------|
-| `main` | Markdown 源码 | 你 / Git 版本管理 |
-| `gh-pages` | `mkdocs build` 静态 HTML | **https://yuhengyy.github.io/** |
-
-仅 push `main` **不会**更新线上网站，必须执行 `mkdocs gh-deploy`（工作台「构建并发布」已自动包含）。
-
-## 提交范围
-
-| 操作 | 在哪个 Git 仓 | 说明 |
-|------|---------------|------|
-| 改博客 Markdown | `yuhengyy.github.io` | 本仓库 |
-| 改 C# 学习代码 | `StudyProject-learning-src-Study` | Study 子模块 |
-| 改工作台 | `StudyProject-tools` | tools 仓 |
-| 改元仓库文档/索引 | `StudyProject` | 元仓库 |
-
-**不要**在博客仓提交 Study 的 `.cs` 代码；**不要**在 Study 仓提交 `mkdocs.yml`。
-
-## 提交作者
-
-```
-user.name  = yhyy
-user.email = zhoujiayuan233@gmail.com
+```powershell
+.\scripts\Setup-Blog.cmd
 ```
 
-仅在用户明确要求时 commit / push。
+依赖版本来自 `requirements.txt`，安装到本项目 `.venv/`。换电脑或移动整个项目后，先将旧 `.venv` 改名留作备份，再运行安装入口重建环境。脚本不需要激活虚拟环境。
 
-## Cursor Agent
+## 构建与预览
 
-本仓库含 Agent Skill：`.agents/skills/blog-workspace/SKILL.md`。  
-从 StudyProject 根目录工作时，使用元仓库 `.agents/skills/blog-publish/SKILL.md`。
+```powershell
+.\.venv\Scripts\python.exe -B scripts/blog.py build
+.\.venv\Scripts\python.exe -B scripts/blog.py serve
+```
+
+预览默认地址为 `http://127.0.0.1:8000/`。端口被占用时，可添加 `--port 8002`。按 Ctrl+C 停止本次预览。根目录保留双击启动入口，执行同一套项目脚本。
+
+构建产物位于 `site/`，不进入源码提交。预览和构建不会提交、推送或部署。
+
+## 发布
+
+人工发布可运行 `.venv/Scripts/python.exe -B scripts/blog.py publish` 或双击 `构建并上传Git.bat`。入口会先构建、显示本仓全部改动，再明确确认提交、推送和部署。确认前应检查改动范围；不需要发布时直接退出。
+
+| 分支 | 内容 |
+|---|---|
+| `main` | 文章、配置、脚本等源码 |
+| `gh-pages` | MkDocs 生成的静态站点，供 GitHub Pages 使用 |
+
+仅推送 `main` 不会更新线上页面。发布入口先推送源码，成功后才运行 MkDocs 部署；任何步骤失败即停止。
+
+Agent 仅在用户明确授权后执行相应的提交、推送或部署。协作方法见本仓 `.agents/skills/blog-workspace/SKILL.md`。
 
 ---
 
-🔙 [工作区概览](index.md)  
-🏠 [返回首页](../index.md)
+[博客与代码](index.md) · [返回首页](../index.md)

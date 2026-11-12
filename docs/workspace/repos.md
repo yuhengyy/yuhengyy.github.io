@@ -1,43 +1,25 @@
-# 仓库索引
+# 代码来源
 
-> **勿手改**。与元仓库 `config/repos.json` 同步（工作台「索引」生成）。
-> 生成时间：2026-09-26 12:55:34
+本页维护文章所引用的公开代码来源。仓库名称沿用现有远端标识；它们不代表本机的目录结构。
 
-命名规则：路径 `a/b/c` → GitHub 仓库 `StudyProject-a-b-c`。
+| 来源 | 相关内容 |
+|---|---|
+| [StudyProject](https://github.com/yuhengyy/StudyProject) | 学习工程与学习导航 |
+| [C# 学习代码](https://github.com/yuhengyy/StudyProject-learning-src-Study) | BaseKnowledge、Logger、Timer、PriorityQueue 及示例 |
+| [Unity 基础学习](https://github.com/yuhengyy/StudyProject-learning-unity-Projects-baselearning) | Unity 跟课与技术练习 |
+| [博客源码](https://github.com/yuhengyy/yuhengyy.github.io) | 本站文章、导航和主题配置 |
 
-## 当前仓库
+## 文章与代码
 
-| ID | 名称 | GitHub | 本机路径 | 类型 |
-|----|------|--------|----------|------|
-| `meta` | StudyProject 元仓库 | [StudyProject](https://github.com/yuhengyy/StudyProject) | `/` | meta |
-| `study` | C# 学习 Study | [StudyProject-learning-src-Study](https://github.com/yuhengyy/StudyProject-learning-src-Study) | `learning/src/Study/` | dotnet |
-| `blog` | 个人博客 | [yuhengyy.github.io](https://github.com/yuhengyy/yuhengyy.github.io) | `publish/yuhengyy.github.io/` | mkdocs |
-| `workbench` | 工作台 Workbench | [StudyProject-tools](https://github.com/yuhengyy/StudyProject-tools) | `tools/workbench/` | dotnet |
-| `unity-baselearning` | Unity 基础学习 baselearning | [StudyProject-learning-unity-Projects-baselearning](https://github.com/yuhengyy/StudyProject-learning-unity-Projects-baselearning) | `learning/unity/Projects/baselearning/` | unity |
-| `notes` | 私人文档 notes | — | `publish/notes/` | other |
-| `shared` | 可迁移类库 shared | — | `shared/` | dotnet |
+| 博客入口 | 说明 |
+|---|---|
+| [Study C# 学习](../projects/csharp/study-csharp.md) | 对应上方 C# 学习仓库 |
+| [C# 项目索引](../projects/csharp/index.md) | 类库文章与历史课程记录 |
+| [Unity 项目索引](../projects/unity/index.md) | 以各文章的实际来源说明为准；课程记录不代表项目已独立发布 |
+| [学习笔记](../knowledge/index.md) | 知识专题，不一定对应单一仓库 |
 
-## 博客页面 ↔ 代码仓
-
-| 博客分区 | 代码来源 | 说明 |
-|----------|----------|------|
-| [Study C#](../projects/csharp/study-csharp.md) | `study` | 当前主学习仓（以正式图为准） |
-| [C# 归档](../projects/csharp/index.md) | `study` / 历史 | 早期文章 |
-| [Unity 项目](../projects/unity/index.md) | `unity-learning` 等 | 叶子仓；详见 workspace-map |
-| [学习笔记](../knowledge/index.md) | 跨仓或纯笔记 | 不一定对应单一仓库 |
-
-## 规划中
-
-| GitHub 仓库名 | 路径 |
-|---------------|------|
-| `StudyProject-learning-apps-Bookkeeping` | `learning/apps/Bookkeeping/` |
-| `StudyProject-learning-unity-Lab-<主题>` | `learning/unity/Lab/<主题>/` |
-| `StudyProject-learning-unity-Projects-<作品>` | `learning/unity/Projects/<作品>/` |
-
-GitHub 用户：`yuhengyy`
+本页随文章维护，不读取或同步其他项目的登记配置。
 
 ---
 
-🔙 [工作区概览](index.md)  
-🏠 [返回首页](../index.md)
-
+[博客与代码](index.md) · [返回首页](../index.md)

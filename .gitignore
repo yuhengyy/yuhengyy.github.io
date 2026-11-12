@@ -35,3 +35,6 @@ htmlcov/
 *.swo
 .DS_Store
 Thumbs.db
+
+# Local validation output
+/.local/

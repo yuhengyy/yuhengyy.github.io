@@ -5,8 +5,8 @@ source_repo: StudyProject-learning-src-Study
 # Study C# 学习仓库（2026 主仓）
 
 > **GitHub**：[StudyProject-learning-src-Study](https://github.com/yuhengyy/StudyProject-learning-src-Study)  
-> **本机路径**：StudyProject/learning/src/Study/  
-> **构建命令**：dotnet build CSharp.slnx（见 [仓库索引](../../workspace/repos.md)）
+> **学习项目**：StudyProject 中的 C# 学习工程
+> **构建命令**：dotnet build CSharp.slnx（见 [代码来源](../../workspace/repos.md)）
 
 跟着老师敲课的 **2026 主学习仓**，包含 C# 基础知识导航、可复用工具类库及示例项目。
 
@@ -45,10 +45,10 @@ source_repo: StudyProject-learning-src-Study
 | [唐老狮综合案例](tang-comprehensive.md) | 早期综合练习，部分在 BaseKnowledge |
 | [网络编程基础](../../knowledge/net-notes.md) | 早期 Server.Playground / Networking.Playground |
 
-## 与工作区的关系
+## 与博客的关系
 
-本仓是 StudyProject 元仓库的 **C# 学习子模块**。  
-工作台「总览」模块可查看各仓 Git 状态；代码变更在此仓提交，博客只写叙述与链接。
+代码在 StudyProject 的 C# 学习工程中维护。
+代码变更提交到对应源仓；博客维护理解、经验和来源链接，两者可以分别使用。
 
 ---
 

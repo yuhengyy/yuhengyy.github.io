@@ -1,0 +1,14 @@
+<article class="journal-card" data-category="{{ item.group }}" data-title="{{ item.title | e }}">
+  <div class="journal-card__art art--{{ item.group }}" aria-hidden="true">
+    {% if item.group == 'unity' %}<div class="art-cube"><i></i><i></i><i></i></div><span>BUILD A LITTLE WORLD</span>
+    {% elif item.group == 'csharp' %}<div class="art-code">{ <em>;</em> }</div><span>ONE LINE AT A TIME</span>
+    {% elif item.group == 'journal' %}<img src="{{ 'assets/brand/leaf.svg' | url }}" alt="" width="72" height="72"><span>NOTES ALONG THE WAY</span>
+    {% else %}<div class="art-orbits"><i></i><i></i><b></b></div><span>CONNECT THE DOTS</span>{% endif %}
+  </div>
+  <div class="journal-card__body">
+    <div class="journal-card__meta"><span class="category-label">{{ item.label | e }}</span><span>{{ item.date if item.date else '学习记录' }}</span></div>
+    <h3><a href="{{ item.url | url }}">{{ item.title | e }}</a></h3>
+    <p>{{ item.description | e }}</p>
+    <div class="journal-card__bottom"><span>约 {{ item.minutes }} 分钟阅读</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+  </div>
+</article>

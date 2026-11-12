@@ -1,31 +1,26 @@
-# 工作区概览
+# 博客与代码
 
-本博客是 **StudyProject 学习工作区** 的对外叙述层，与代码仓库分离。
+本站记录技术学习、项目实践和经验总结。文章与代码分别维护，通过来源链接相互关联。
 
-**完整目录树不在此维护**——以元仓库正式图为准（本地 `docs/workspace-map.md`）；公开仓表见 [仓库索引](repos.md)（由 `repos.json` 生成）。
+| 内容 | 位置 |
+|---|---|
+| 公开文章、导航与站点资源 | 本博客 |
+| 可运行的 C# 或 Unity 工程 | 对应代码仓库 |
+| 文章对应的源码入口 | [代码来源](repos.md) |
 
-| 层级 | 放什么 | Git |
-|------|--------|-----|
-| **代码仓** | `.cs`、Unity、Flutter App、工具源码 | 各子仓库独立提交 |
-| **本博客** | 学习笔记、项目心得、架构说明 | `yuhengyy.github.io` |
-| **元仓库** | 多仓策略、Cursor 规则、正式图 | `StudyProject` |
+阅读文章不需要本机工程；克隆和构建本博客也不依赖其他项目。技术笔记可对应一个代码仓、多个仓库或单纯的知识主题。
 
-## 快速入口
+## 阅读入口
 
-| 链接 | 说明 |
-|------|------|
-| [仓库索引](repos.md) | Git 仓库与路径（生成镜像） |
-| [发布与提交](publish.md) | 如何用工作台发布博客 |
-| [Study C# 学习](../projects/csharp/study-csharp.md) | 当前主学习代码仓 |
-| [学习笔记](../knowledge/index.md) | 专题知识沉淀 |
-| [Unity 项目](../projects/unity/index.md) | Unity 课程项目归档 |
-
-## 边界原则
-
-1. **代码只在源仓维护一份**  
-2. **博客只写理解、架构、踩坑与链接**，不拷贝大段源码  
-3. **项目文应能追溯到对应 GitHub 仓库**（见 [仓库索引](repos.md)）
+- [所有文章](../articles/index.md)
+- [随记与时间归档](../journal/index.md)
+- [标签漫游](../tags/index.md)
+- [Study C# 学习](../projects/csharp/study-csharp.md)
+- [Unity 项目记录](../projects/unity/index.md)
+- [专题学习笔记](../knowledge/index.md)
+- [预览与发布](publish.md)
+- [写下一篇文章](writing.md)
 
 ---
 
-🏠 [返回首页](../index.md)
+[返回首页](../index.md)
