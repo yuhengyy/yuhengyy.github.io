@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-13",
+  "posts": [
+    {
+      "source": "knowledge/csharp-notes.md",
+      "slug": "csharp-learning",
+      "title": "重新拾起 C#：语法之外的学习笔记",
+      "category": "C#",
+      "tags": [
+        "C#",
+        "学习复盘"
+      ],
+      "description": "从编码习惯到属性、委托与事件，记录重新学习 C# 时的理解和疑问。"
+    },
+    {
+      "source": "knowledge/data-Persistence.md",
+      "slug": "data-persistence",
+      "title": "数据持久化：从 PlayerPrefs 到配置工具",
+      "category": "Unity",
+      "tags": [
+        "Unity",
+        "数据存储"
+      ],
+      "description": "围绕 PlayerPrefs、JSON、二进制与 ScriptableObject，整理学习数据持久化的过程。"
+    },
+    {
+      "source": "knowledge/framework-notes.md",
+      "slug": "framework-notes",
+      "title": "从工具封装到 QFramework：我的框架学习记录",
+      "category": "开发札记",
+      "tags": [
+        "框架",
+        "QFramework",
+        "学习复盘"
+      ],
+      "description": "在程序基础框架、QFramework 与 MVC 的学习之间，慢慢建立对代码组织的理解。"
+    },
+    {
+      "source": "knowledge/unity-notes.md",
+      "slug": "unity-paths",
+      "title": "Unity 路径与特殊文件夹笔记",
+      "category": "Unity",
+      "tags": [
+        "Unity",
+        "资源管理"
+      ],
+      "description": "整理 Application 路径、Resources、Editor 和 StreamingAssets，方便开发时回看。"
+    },
+    {
+      "source": "knowledge/net-notes.md",
+      "slug": "network-basics",
+      "title": "Unity 网络学习：从 Socket 到消息协议",
+      "category": "开发札记",
+      "tags": [
+        "网络",
+        "Unity",
+        "学习复盘"
+      ],
+      "description": "从 TCP 通信与消息拆包出发，记录接触 Protobuf、UDP 和 KCP 时的学习过程。"
+    },
+    {
+      "source": "projects/unity/mmo-game.md",
+      "slug": "mmo-course",
+      "title": "状态同步 MMO：一次课程实践复盘",
+      "category": "Unity",
+      "tags": [
+        "Unity",
+        "网络",
+        "项目复盘"
+      ],
+      "description": "沿着客户端与服务器框架、AOI、移动同步和战斗流程，回看一次 MMO 课程实践。"
+    }
+  ],
+  "retired": [
+    "about/goals.md",
+    "about/resume.md",
+    "journal/index.md",
+    "journal/posts/a-new-chapter.md",
+    "knowledge/index.md",
+    "knowledge/problems.md",
+    "knowledge/reflections.md",
+    "progress/completed.md",
+    "progress/index.md",
+    "progress/plan.md",
+    "progress/todo.md",
+    "projects/csharp/index.md",
+    "projects/csharp/priority-queue.md",
+    "projects/csharp/study-csharp.md",
+    "projects/csharp/tang-comprehensive.md",
+    "projects/index.md",
+    "projects/unity/astar-navigation.md",
+    "projects/unity/dialogue-system-free.md",
+    "projects/unity/dialogue-system-pro.md",
+    "projects/unity/index.md",
+    "projects/unity/item-toolkit.md",
+    "projects/unity/landlord-game.md",
+    "projects/unity/match3-dotween.md",
+    "projects/unity/match3-game.md",
+    "projects/unity/qframework-create.md",
+    "projects/unity/qframework-games.md",
+    "projects/unity/qframework-sgame.md",
+    "projects/unity/qframework-study.md",
+    "projects/unity/tcp-network.md",
+    "projects/unity/utility-toolkit.md",
+    "workspace/index.md",
+    "workspace/publish.md",
+    "workspace/repos.md",
+    "workspace/writing.md"
+  ],
+  "original_pages": [
+    "about/goals.md",
+    "about/index.md",
+    "about/resume.md",
+    "articles/index.md",
+    "index.md",
+    "journal/index.md",
+    "journal/posts/a-new-chapter.md",
+    "knowledge/csharp-notes.md",
+    "knowledge/data-Persistence.md",
+    "knowledge/framework-notes.md",
+    "knowledge/index.md",
+    "knowledge/net-notes.md",
+    "knowledge/problems.md",
+    "knowledge/reflections.md",
+    "knowledge/unity-notes.md",
+    "progress/completed.md",
+    "progress/index.md",
+    "progress/plan.md",
+    "progress/todo.md",
+    "projects/csharp/index.md",
+    "projects/csharp/priority-queue.md",
+    "projects/csharp/study-csharp.md",
+    "projects/csharp/tang-comprehensive.md",
+    "projects/index.md",
+    "projects/unity/astar-navigation.md",
+    "projects/unity/dialogue-system-free.md",
+    "projects/unity/dialogue-system-pro.md",
+    "projects/unity/index.md",
+    "projects/unity/item-toolkit.md",
+    "projects/unity/landlord-game.md",
+    "projects/unity/match3-dotween.md",
+    "projects/unity/match3-game.md",
+    "projects/unity/mmo-game.md",
+    "projects/unity/qframework-create.md",
+    "projects/unity/qframework-games.md",
+    "projects/unity/qframework-sgame.md",
+    "projects/unity/qframework-study.md",
+    "projects/unity/tcp-network.md",
+    "projects/unity/utility-toolkit.md",
+    "tags/index.md",
+    "workspace/index.md",
+    "workspace/publish.md",
+    "workspace/repos.md",
+    "workspace/writing.md"
+  ]
+}

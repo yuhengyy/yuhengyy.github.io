@@ -8,14 +8,14 @@
   <nav class="topic-strip" aria-label="按主题探索">
     <a href="{{ 'articles/' | url }}?category=unity"><span class="topic-number">01</span><div><strong>造一个小世界</strong><span>Unity · 游戏开发</span></div><span aria-hidden="true">↗</span></a>
     <a href="{{ 'articles/' | url }}?category=csharp"><span class="topic-number">02</span><div><strong>从一行代码开始</strong><span>C# · 编程实践</span></div><span aria-hidden="true">↗</span></a>
-    <a href="{{ 'journal/' | url }}"><span class="topic-number">03</span><div><strong>沿途的小发现</strong><span>随记 · 灵感与日常</span></div><span aria-hidden="true">↗</span></a>
+    <a href="{{ 'articles/' | url }}"><span class="topic-number">03</span><div><strong>连接想法与实践</strong><span>框架 · 网络 · 学习记录</span></div><span aria-hidden="true">↗</span></a>
   </nav>
   <div class="home-columns">
     <section aria-labelledby="featured-title"><div class="section-heading"><div><span class="page-eyebrow">PAGES TO EXPLORE</span><h2 id="featured-title">随手翻翻</h2></div><a href="{{ 'articles/' | url }}">所有文章 <span aria-hidden="true">↗</span></a></div><div class="journal-grid">{% for item in journal_featured %}{% include 'partials/article-card.html' %}{% endfor %}</div></section>
     <aside class="home-aside" aria-label="关于本站">
       <div class="profile-card"><div class="profile-avatar"><img src="{{ 'assets/brand/leaf.svg' | url }}" alt="" width="52" height="52"></div><span class="page-eyebrow">HELLO, I'M</span><h2>Yuhengyy<span> .</span></h2><p>学习游戏开发，也把路上的<br>理解、实践和疑问记录下来。</p><div class="profile-topics"><span>Unity</span><span>C#</span><span>保持好奇</span></div><a class="profile-link" href="{{ 'about/' | url }}">关于这个小站 <span aria-hidden="true">↗</span></a></div>
       <div class="aside-note"><span class="page-eyebrow">A LITTLE REMINDER</span><p>不急着抵达，<br>每一小步都算数。</p><span class="note-flower" aria-hidden="true">✳</span></div>
-      <div class="aside-index"><h3>换一种方式逛逛</h3><a href="{{ 'tags/' | url }}">标签漫游 <span>↗</span></a><a href="{{ 'journal/' | url }}">时间里的随记 <span>↗</span></a><a href="{{ 'projects/' | url }}">学习笔记目录 <span>↗</span></a><a href="https://github.com/yuhengyy">GitHub 上的代码 <span>↗</span></a></div>
+      <div class="aside-index"><h3>换一种方式逛逛</h3><a href="{{ 'tags/' | url }}">标签漫游 <span>↗</span></a><a href="{{ 'articles/' | url }}">所有学习文章 <span>↗</span></a><a href="{{ 'articles/' | url }}">文章索引 <span>↗</span></a><a href="https://github.com/yuhengyy">GitHub 上的代码 <span>↗</span></a></div>
     </aside>
   </div>
   <div class="home-closing"><span aria-hidden="true">✳</span><p>谢谢你，来过这片小天地。</p><a href="#home-title">回到开头 ↑</a></div>

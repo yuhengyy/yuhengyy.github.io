@@ -1,4 +1,4 @@
-# 框架相关
+# 从工具封装到 QFramework：我的框架学习记录
 
 ## 程序基础框架
 
@@ -29,7 +29,7 @@ QFramework 算是我真正意义上接触的第一个框架
 - System（Controller），作为中介传递操作和同步数据，因为 Unity 的 UI 框架适合 MVVM 和 MVP，所以实际上很少有 System，所以我的理解的 System 是把功能进行封装，让 View 和 Model 能够通过命令和观察者模式互相调用通知
 - Model，基础数据，例如血量，金币，杀敌数，或者角色数据，关卡配置等等
 - Utility，最基础功能，或者说工具
-  > - BindableProperty<T> ：把 int 用其存储，然后该 int 就能直接自己增加事件而不是使用事件中心
+  > - `BindableProperty<T>` ：把 int 用其存储，然后该 int 就能直接自己增加事件而不是使用事件中心
   > - C#扩展写法：比如 this.Log，txt.SetName，增加日志工具和 UI 工具
   > - ILogic：继承可自动实现非 Mono 类中的生命周期函数，通过不同功能进行周期函数命名，但内容差不多 Awake（Init），Update（Tick），Destroy（Uninit）
   > - DoTween，序列化工具
@@ -73,7 +73,4 @@ MVC 框架，难度骤减，因为先了解的 QFramework ,顺其自然理解，
 6，之后学习了 pureMVC，主要是增加了中介 Mediator，外观 Facade，命令 Command，进行数据的传递，这也是为什么我在上面书写 QFramework 心得时，哪怕自己感觉没学明白但却说 ：_“进步巨大，在只跟着类幸存者这一个项目就能熟悉下面的 MVC 框架”_
 **因为这回到了 QFramework 的基础学习里面学到的知识了：数据的传递，数据的层级设计**
 
----
-
-🔙 [回到上一级（首页）](../index.md)  
-🏠 [返回首页](../index.md)
+[所有文章](../articles/index.md)

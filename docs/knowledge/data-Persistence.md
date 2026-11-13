@@ -1,4 +1,4 @@
-# 数据持久化
+# 数据持久化：从 PlayerPrefs 到配置工具
 
 ## Playerprefs
 
@@ -61,7 +61,4 @@ Json，知识点少，API 自动读取类存储类，大概内容就是了解 AP
 | **属于这个玩家** | 二进制/JSON | 等级、装备、进度 |
 | **属于这个游戏** | ScriptableObject | 角色设计、关卡模板 |
 
----
-
-🔙 [回到上一级（知识库索引）](index.md)  
-🏠 [返回首页](../index.md)
+[所有文章](../articles/index.md)

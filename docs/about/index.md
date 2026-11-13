@@ -1,33 +1,26 @@
 ---
-title: 关于这个小站
+title: 关于我
 hide:
   - toc
 ---
 
-<div class="page-eyebrow">A LITTLE ABOUT THIS PLACE</div>
-
 # 你好，我是 Yuhengyy。
 
-这里是一片留给学习与记录的小天地。
+这里记录我学习 Unity 与 C# 的过程：做过的尝试、慢慢建立的理解，以及还没有想明白的问题。
 
-我在学习 Unity 与 C#，也把实践中的理解、疑问和经验收在这里。从一行代码，到一个可以运行的小世界，每一次尝试都值得留下一点痕迹。
+我希望这些笔记能留住具体的思考，也让后来回看的自己知道，当时是怎样一步步走过来的。
 
-## 这里有什么
+## 关于这里的文章
 
-- **[文章](../articles/index.md)**：把不同阶段的记录放在一起，随手翻翻。
-- **[随记](../journal/index.md)**：新的发现，以及这个小站的变化。
-- **[笔记](../projects/index.md)**：沿着课程和主题，继续深入阅读。
+文章来自不同阶段的学习与课程实践，部分技术结论仍需在新的项目中验证。阅读时请把它们看作学习记录。
 
-这些是学习过程中的记录，部分旧笔记还在整理和复核。它们不代表完整教程，也不意味着对应内容已全部掌握。
+[浏览所有文章](../articles/index.md)
 
-## 再认识一点
+## 代码与联系
 
-[学习目标](goals.md) · [个人简历](resume.md) · [代码来源](../workspace/repos.md) · [GitHub](https://github.com/yuhengyy)
+- [GitHub](https://github.com/yuhengyy)
+- [C# 学习工程](https://github.com/yuhengyy/StudyProject-learning-src-Study)
+- [Unity 学习工程](https://github.com/yuhengyy/StudyProject-learning-unity-Projects-baselearning)
+- [B 站](https://space.bilibili.com/3546742316337695)
 
-## 关于小站
-
-本站基于 Material for MkDocs，用本地矢量插画、文章卡片与标签，给笔记留一个轻松的阅读空间。
-
-[本站说明](../workspace/index.md) · [写作指南](../workspace/writing.md)
-
-谢谢你来。愿你也一直保有好奇心。
+谢谢你来。愿我们都一直保有好奇心。

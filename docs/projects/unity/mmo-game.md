@@ -1,10 +1,10 @@
-### 状态同步 MMO 案例课程
+# 状态同步 MMO：一次课程实践复盘
 
-#### 1，搭建客户端基本业务框架
+## 1，搭建客户端基本业务框架
 
 主要是类似之前的框架小课程，整合系统逻辑和服务层逻辑（这里服务层可以看作 Utility 工具层）
 
-与 QFramework 不同的是（以后 QFramework 简称 QF），这里使用大多数是 PERoot.Instance.Svc 或者 PERoot.Instance.Sys，而不是 QF 里面的 this.System<Svc>().Function 或者 this.System<Sys>().Function
+与 QFramework 不同的是（以后 QFramework 简称 QF），这里使用大多数是 PERoot.Instance.Svc 或者 PERoot.Instance.Sys，而不是 QF 里面的 `this.System<Svc>().Function` 或者 `this.System<Sys>().Function`
 
 所以率先书写的是 PERoot，整个项目的根，之后是接口 ILogic 和 IAwake，IUpdate，IDestroy，让非 Mono 都能通过 PERoot 注册，系统层和服务层使用不同接口进行初始化让自己成为 PRRoot.List 里面的各种接口进行不同的生命周期
 
@@ -23,7 +23,7 @@ PERoot.UISys.LoginWnd 或者 PERoot.UISys.MajorWnd.HPItemComp，虽然这位老�
 
 第一章就是这样，通过搭建框架，完成系统控制游戏模式切换，实现登录模式，进入之后是角色创建模式，最后才是进入游戏到主城游玩模式（暂时未接入 Net,登录用的是虚拟消息）
 
-#### 2，搭建服务器基本业务框架
+## 2，搭建服务器基本业务框架
 
 补充，第一章引用了插件《通用 UI 事件监听器》，但实际上是写在 WindowRoot 的 Function 里面的事件注册工具，监听按，拖，抬，点，并且加回调，和 onclick.AddListen 差不多，但是方便的是可以知道其他行为，后续的轮盘就是依据此工具开发的（回调拖拽点并更新位置）
 
@@ -60,12 +60,12 @@ PERoot.UISys.LoginWnd 或者 PERoot.UISys.MajorWnd.HPItemComp，虽然这位老�
 而每一个 CMD 的枚举都存在一个 ReqPack 放在 NetMsg 里面，大多数情况下 NetMsg 的包只有一个有效
 而服务器和客户端就是在接收 Token 消息，在底层反序列化然后得到 NetMsg 后，通过 CMD 的枚举判断我该读取哪个 ReqPack（client 发，server 收）或者 RspPack（client 收，server 发），然后做出相应操作**
 
-#### 3，服务器寻路和 AOI 视野算法
+## 3，服务器寻路和 AOI 视野算法
 
 导入 Nav 地图和 AOI 插件到服务器
 这一章基本上没自己的逻辑和框架，没多少思想,就是用工具
 
-逻辑基本上就是每个服务器的 Role 存在 AOIComp，AOIComp 存在一个<int,AOIComp>字典存储
+逻辑基本上就是每个服务器的 Role 存在 AOIComp，AOIComp 存在一个`<int,AOIComp>`字典存储
 
 服务器的 World 存在 AOIMgr
 然后服务器的 AOIMgr 感觉哪个玩家是进入视野，则同步给其他玩家，传入唯一 uid 和 RoleData
@@ -74,7 +74,7 @@ PERoot.UISys.LoginWnd 或者 PERoot.UISys.MajorWnd.HPItemComp，虽然这位老�
 
 寻路则是有一个多边形漏斗算法插件，给出起始点和末尾点，就能把数据传入 Client 的玩家上（Client 玩家本身也有一个这样的插件，但用的是 Unity 自带的 Nav，之所以客户端和服务器都有，主要是为之后的怪物寻路做铺垫，因为怪物属于服务器权威）
 
-#### 4，客户端移动同步和预表现
+## 4，客户端移动同步和预表现
 
 通过算法同步延迟和追击
 
@@ -83,7 +83,7 @@ PERoot.UISys.LoginWnd 或者 PERoot.UISys.MajorWnd.HPItemComp，虽然这位老�
 通过方向向量+速度+延迟时长，进行操作玩家位置的预计算，保证在同一时间，两个客户端和服务器都看到的差不多
 然后每 3 秒再继续核心定位一次的心跳消息（心跳消息也用在缓存上面，玩家需要 10 秒未重连则销毁，不然服务器还是默认它呆在原地）
 
-#### 5，任务系统和 NPC 对话系统
+## 5，任务系统和 NPC 对话系统
 
 完全的 Unity 本身的业务，唯二联网的是
 
@@ -94,13 +94,13 @@ PERoot.UISys.LoginWnd 或者 PERoot.UISys.MajorWnd.HPItemComp，虽然这位老�
 
 > （这里不使用服务器寻路是因为老师说，玩家可以操作的，没必要在服务器进行寻路，实际上只要核对接取和完成的时间差，和数据报本身消息是否有误即可，我认为不保障安全，还可以在存储一个唯一会变化的 Token，这里指字符串令牌，每次登录创建，领取奖励和完成任务需要这个 Token 无误）
 
-#### 6，公共地图怪物和血条管理
+## 6，公共地图怪物和血条管理
 
 公共地图怪物没啥好说的，就是配置怪物的位置种类群集数等等等，利用之前服务器的 AOIMgr，向玩家传递 MonserData 告诉哪里要创建怪物，不过在 World 下存在一个 MonsterMgr 控制怪物新生成
 
 血条也只是 UI 系统变种，只在客户端生效，若存在怪物则把 MonsterData 的 Pos 传入 UI 系统然后生成相关血条在 UI 上面
 
-#### 7，核心战斗流程和伤害表现
+## 7，核心战斗流程和伤害表现
 
 这里就很麻烦了，首先还是创建 Skill 配置（普攻算作 0cd 技能），流程复杂
 
@@ -115,7 +115,4 @@ PERoot.UISys.LoginWnd 或者 PERoot.UISys.MajorWnd.HPItemComp，虽然这位老�
 
 所以在前摇期间，客户端不卡，收到服务器回应也就在某个时间段更新 HPItemComp，飘字+血量减少
 
----
-
-🔙 [回到上一级（Unity 项目索引）](index.md)  
-🏠 [返回首页](../../index.md)
+[所有文章](../../articles/index.md)

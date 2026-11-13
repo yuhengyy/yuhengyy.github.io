@@ -1,4 +1,4 @@
-# Unity 笔记
+# Unity 路径与特殊文件夹笔记
 
 > 路径 API、特殊文件夹与常见选型。相关：[数据持久化](data-Persistence.md) · [网络基础](net-notes.md)
 
@@ -299,7 +299,4 @@ A: 不会。Editor 文件夹下的脚本只在编辑器环境下编译和运行�
 **Q: 如何区分 dataPath 和 persistentDataPath？**
 A: dataPath 是安装目录（只读），persistentDataPath 是用户数据目录（可读写）。类比：dataPath 是光盘/ROM，persistentDataPath 是硬盘/存档卡。
 
----
-
-🔙 [回到上一级（知识库索引）](index.md)  
-🏠 [返回首页](../index.md)
+[所有文章](../articles/index.md)

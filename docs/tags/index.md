@@ -11,6 +11,6 @@ hide:
 
 一个标签，一条新的阅读路径。
 
-[所有文章](../articles/index.md) · [随记与归档](../journal/index.md)
+[所有文章](../articles/index.md)
 
 <!-- material/tags -->

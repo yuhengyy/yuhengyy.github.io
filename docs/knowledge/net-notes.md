@@ -1,4 +1,4 @@
-# Unity 网络开发基础
+# Unity 网络学习：从 Socket 到消息协议
 
 ## 基础网络知识学习
 
@@ -60,7 +60,4 @@ Socket udpSkt = new Socket(pt.AddressFamily, SocketType.Dgram, ProtocolType.Udp)
 
 处理方法：无论接收到什么，始终按照 `byte[4] + byte[x]` 进行接收。如果头没接完，下个包体的前 `4-n` 位组合成头；如果身体没接完，只有 m，下个包体的前 `x-m` 组成身体。哪怕一个包体只存在 `byte[1]`，都会变成头或者身体一部分。
 
----
-
-🔙 [回到上一级（知识库索引）](index.md)  
-🏠 [返回首页](../index.md)
+[所有文章](../articles/index.md)
