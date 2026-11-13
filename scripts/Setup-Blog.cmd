@@ -1,22 +1,10 @@
 @echo off
-setlocal
-pushd "%~dp0.."
-if errorlevel 1 exit /b 1
-set "BLOG_PYTHON=python"
-if not "%~1"=="" set "BLOG_PYTHON=%~1"
-if not exist ".venv\Scripts\python.exe" (
-    "%BLOG_PYTHON%" -m venv ".venv"
-    if errorlevel 1 (
-        popd
-        exit /b 1
-    )
-)
-".venv\Scripts\python.exe" -m pip install --disable-pip-version-check -r "requirements.txt"
+chcp 65001 > nul
+cd /d "%~dp0.."
+where node >nul 2>&1
 if errorlevel 1 (
-    popd
+    echo Install Node.js 22 or later first.
     exit /b 1
 )
-".venv\Scripts\python.exe" -m mkdocs --version
-set "BLOG_EXIT=%errorlevel%"
-popd
-exit /b %BLOG_EXIT%
+call npx --yes pnpm@9.14.4 install --frozen-lockfile --store-dir .local/pnpm-store
+exit /b %errorlevel%

@@ -1,138 +1,45 @@
 ---
 name: blog-workspace
 description: >-
-  Manages yuhengyy.github.io MkDocs blog in StudyProject multi-repo layout.
-  Use when the user asks to update blog, publish site, commit blog, fix nav,
-  add project page, or mentions 博客 / mkdocs / github pages / study-csharp page.
+  Maintain the independent BlogProject Fuwari / Astro site: articles, navigation,
+  local preview, builds and explicitly requested publication.
 ---
 
-# 博客仓库（yuhengyy.github.io）
+# 博客工作流
 
-## 角色定位
+本项目是独立的公开博客，先读项目根 [README](../../../README.md) 与 [AGENTS](../../../AGENTS.md)。目录迁移不改变现有 GitHub 远端 `yuhengyy/yuhengyy.github.io`。
 
-| 仓库 | 路径 | 放什么 |
-|------|------|--------|
-| **本博客** | `publish/yuhengyy.github.io/` | Markdown 叙述、MkDocs 配置（**公开**） |
-| **私人笔记** | `publish/notes/` | 面试/策划/成长等（**不进 MkDocs**，建议 Private 仓） |
-| **Study 代码** | `learning/src/Study/` | C# 源码，**不在此仓提交** |
-| **元仓库** | `StudyProject/` 根 | 策略文档、`.gitmodules` |
-| **工具** | `tools/` | 工作台 GUI |
+## 职责与来源
 
-**博客 = 展示层；notes = 私人叙述层；代码 = 源仓。** 文章链到 GitHub 仓库，不拷贝 `.cs` 文件。  
-从 notes 提炼到博客时需脱敏；**禁止**把 `publish/notes` 挂进 `mkdocs.yml`。
+- `src/content/posts/` 保存公开正文，`src/content/spec/about.md` 保存关于页，`public/` 保存直接发布资源，`src/config.ts` 保存站点设置。
+- 文章代码来源使用公开 GitHub 链接；不消费其他项目的登记表。
+- 本机 C# 学习源码相对博客根位于 `../StudyProject/CSharp/`，Unity 学习源码位于 `../StudyProject/Unity/baselearning/`。关联仅用于阅读；构建时不读取这些工程。
+- 私人原稿不进入公开内容或站点配置。提炼文章时先脱敏，不公开私人目录、机器绝对路径或凭据。
+- `StudyProject-learning-src-Study` 等名称是现有远端仓库标识，不能因本机路径调整随意替换。
 
-## 主学习仓（工作区核心）
+## 修改与验证
 
-| 概念 | 说明 |
-|------|------|
-| **博客 nav「Study C# 学习」** | 叙述 `learning/src/Study/` 的唯一官方入口 |
-| **代码源仓** | `StudyProject-learning-src-Study`（元仓库子模块） |
-| **边界** | 博客可公开；Study 仓跟课代码在此维护，不在博客仓提交 |
+1. 定位文章及其 frontmatter；分类、标签、归档、搜索从文章自动生成，不维护重复索引。
+2. 新文使用 `npx --yes pnpm@9.14.4 new-post english-slug --title "标题"`，完成后设 `draft: false`；正文从二级标题开始。
+3. 改变 slug 时更新站内链接并在 `maintenance/legacy-routes.json` 保留旧地址。
+4. 执行 `npx --yes pnpm@9.14.4 check` 和 `npx --yes pnpm@9.14.4 build`；布局修改打开 `npx --yes pnpm@9.14.4 preview` 检查电脑与手机。
 
-元仓库规则：`.agents/rules/workspace-primary-repo.md`
+依赖缺失时运行 `scripts/Setup-Blog.cmd`，需要 Node.js 22+；pnpm 固定 9.14.4，依赖以锁文件为准，不借用其他项目环境。开发预览为 `npx --yes pnpm@9.14.4 dev`，默认 4321，可用 `--port` 指定。搜索需在正式构建后的 preview 验证。
 
-## 磁盘与 Git
+日志和一次性检查输出放被忽略的 `.local/`，不进入公开内容。用户已接受原生 Fuwari 的手机导航、侧栏下移和宽屏文章目录，不擅自增加知识库式目录树。
 
-```
-StudyProject/publish/yuhengyy.github.io/   ← 本仓库（独立 git）
-├── docs/                                   ← MkDocs 内容根
-│   ├── workspace/                          ← 工作区与多仓说明
-│   ├── projects/csharp/                    ← C# 项目叙述
-│   ├── projects/unity/                     ← Unity 项目叙述
-│   └── knowledge/                          ← 专题笔记
-├── mkdocs.yml                              ← 导航与主题
-└── .agents/skills/blog-workspace/          ← 本 Skill
-```
+## 导航与文章
 
-GitHub：`https://github.com/yuhengyy/yuhengyy.github.io.git`  
-分支：`main` · 部署：GitHub Pages
+全站入口为首页、文章、关于；目前分类 C#、Unity、开发札记。文章应能说明理解、用法或经验，并追溯实际来源；不复制大段业务源码。既有旧链接处理由 `maintenance/legacy-routes.json` 维护。
 
-## 导航层级（mkdocs.yml）
+## 提交与发布
 
-```
-首页
-工作区          → workspace/（多仓索引、发布说明）
-Study C# 学习   → projects/csharp/（主学习仓叙述）
-Unity 项目      → projects/unity/（大项目归档）
-学习笔记        → knowledge/（跨仓专题）
-课程项目        → projects/index.md
-进度 / 关于
-```
+只有用户明确授权才提交、推送或部署。先检查本仓工作区与暂存区变化，使用个人 verified-commit 技能处理提交范围。
 
-新增页面时：**同时更新 `mkdocs.yml` nav** 和对应 `index.md` 链接。
+- 仅提交源文件；`dist/`、`node_modules/`、`.local/`、旧 `site/`、`.venv/` 不入 Git。
+- 中文提交说明，单次作者参数为 `-c user.name=yhyy -c user.email=zhoujiayuan233@gmail.com`，不修改全局 Git 配置。
+- GitHub Pages 读取 `gh-pages`；只推送 `main` 不等于完成发布。
+- 本项目 `npx --yes pnpm@9.14.4 publish:site` 为手动发布入口，要求干净的 main 和明确确认。Agent 仅在已有发布授权时传 `--yes`，不可绕过授权范围。
+- 发布入口重新构建并检查，以继承远端的提交更新 gh-pages，不强推。部署后核对 Pages 状态及线上版本。
 
-## 与代码仓对应关系
-
-| 博客页面 | source_repo | 本机代码路径 |
-|----------|-------------|--------------|
-| `projects/csharp/study-csharp.md` | `StudyProject-learning-src-Study` | `learning/src/Study/` |
-| `projects/csharp/priority-queue.md` | 同上（`PriorityQueue`） | 同上 |
-| `projects/unity/mmo-game.md` | 未来独立 Unity 仓 | `learning/unity/Projects/...` |
-| `knowledge/*.md` | 跨仓或纯笔记 | — |
-
-权威仓库表：源为元仓 `config/repos.json`；本仓 `docs/workspace/repos.md` 为工作台生成镜像（勿手改）
-
-## 发布流程（工作台）
-
-用户未明确要求时 **不要** commit / push。
-
-1. 双击 `StudyProject/工作台.cmd`
-2. 博客模块 → **启动预览**（地址以工作台显示为准）
-3. 确认后 **构建并发布**，填写中文提交说明（推送时自动 `gh-deploy` 到 `gh-pages`）
-
-或在本仓目录：
-
-```powershell
-cd publish/yuhengyy.github.io
-git add .
-git -c user.name=yhyy -c user.email=zhoujiayuan233@gmail.com commit -m "docs: 说明"
-git push origin main
-python -m mkdocs gh-deploy --force
-```
-
-线上站点读 **gh-pages** 分支，不是 `main`。
-
-MkDocs 进程自动设置 `NO_MKDOCS_2_WARNING=1`。
-
-## 提交规范
-
-- **只提交本仓文件**：`docs/`、`mkdocs.yml`、样式脚本
-- **不提交**：`site/`（构建产物，应在 `.gitignore`）
-- **中文 commit**：`docs: 更新 Study 项目页`、`fix: 修正导航链接`
-- 作者：`yhyy <zhoujiayuan233@gmail.com>`，不修改全局 git config
-
-## 新建项目文章模板
-
-在 `docs/projects/<类型>/` 新建 `.md`，页脚加上仓库来源：
-
-```markdown
----
-source_repo: StudyProject-learning-src-Study
----
-
-# 标题
-
-> 代码：https://github.com/yuhengyy/StudyProject-learning-src-Study
-
-（正文：理解、架构、踩坑，不贴大段源码）
-
----
-🔙 [回到索引](index.md)
-🏠 [返回首页](../../index.md)
-```
-
-并在 `mkdocs.yml` 对应分区添加 nav 项。
-
-## 常见修复
-
-| 问题 | 处理 |
-|------|------|
-| 中文乱码（`???`） | 用 UTF-8 无 BOM 重写，参考 `learning/src/Study/README.md` |
-| `not included in nav` | 在 `mkdocs.yml` 添加 nav 条目 |
-| 返回首页链接错误 | `docs/projects/*/` 用 `../../index.md`；`docs/knowledge/` 用 `../index.md` |
-| 内容与代码不一致 | 改源仓 + 更新博客链接，不要只在博客里改代码描述 |
-
-## 相关 Skill
-
-- StudyProject 元仓库：`.agents/skills/study-git-repos/SKILL.md`（多仓 / submodule）
-- StudyProject 元仓库：`.agents/skills/blog-publish/SKILL.md`（从根目录发布时的入口）
+工作台可以作为可选入口调用本博客；不在博客中维护工作台的项目目录或镜像。Material 恢复说明位于 `.local/backups/2026-11-13-fuwari/RESTORE.md`。

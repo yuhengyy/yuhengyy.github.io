@@ -1,0 +1,12 @@
+---
+import MainGridLayout from '../layouts/MainGridLayout.astro';
+---
+<MainGridLayout title="页面未找到">
+  <meta slot="head" name="robots" content="noindex,follow" />
+  <section class="card-base p-8 md:p-12">
+    <p class="text-[var(--primary)] font-bold mb-4">404 · 走到了一条小岔路</p>
+    <h1 class="text-3xl font-bold text-90 mb-4">这里暂时没有页面</h1>
+    <p class="text-75 leading-8">链接可能已经改变。回到首页，或者去文章页继续看看吧。</p>
+    <div class="flex gap-4 mt-8"><a class="btn-regular rounded-xl px-5 py-3" href="/">首页</a><a class="btn-regular rounded-xl px-5 py-3" href="/archive/">文章</a></div>
+  </section>
+</MainGridLayout>

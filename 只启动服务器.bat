@@ -1,11 +1,14 @@
 @echo off
 chcp 65001 > nul
-if not exist "%~dp0.venv\Scripts\python.exe" (
-    echo Run scripts\Setup-Blog.cmd first.
+cd /d "%~dp0"
+where node >nul 2>&1
+if errorlevel 1 (
+    echo Install Node.js 22 or later, then run scripts\Setup-Blog.cmd.
     pause
     exit /b 1
 )
-"%~dp0.venv\Scripts\python.exe" -B "%~dp0scripts\blog.py" serve
+call npx --yes pnpm@9.14.4 dev
+:end
 set "BLOG_EXIT=%errorlevel%"
-if not "%BLOG_EXIT%"=="0" pause
+pause
 exit /b %BLOG_EXIT%

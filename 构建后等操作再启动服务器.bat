@@ -1,18 +1,18 @@
 @echo off
 chcp 65001 > nul
-if not exist "%~dp0.venv\Scripts\python.exe" (
-    echo Run scripts\Setup-Blog.cmd first.
-    pause
-    exit /b 1
-)
-"%~dp0.venv\Scripts\python.exe" -B "%~dp0scripts\blog.py" build
+cd /d "%~dp0"
+where node >nul 2>&1
 if errorlevel 1 (
+    echo Install Node.js 22 or later, then run scripts\Setup-Blog.cmd.
     pause
     exit /b 1
 )
-choice /c 12 /n /t 15 /d 2 /m "1: Start preview, 2: Exit [1-2]: "
-if errorlevel 2 exit /b 0
-"%~dp0.venv\Scripts\python.exe" -B "%~dp0scripts\blog.py" serve
+call npx --yes pnpm@9.14.4 build
+if errorlevel 1 goto end
+echo Build complete. Press any key to start preview.
+pause
+call npx --yes pnpm@9.14.4 preview
+:end
 set "BLOG_EXIT=%errorlevel%"
-if not "%BLOG_EXIT%"=="0" pause
+pause
 exit /b %BLOG_EXIT%

@@ -1,0 +1,24 @@
+import { readFile, mkdir, writeFile, access } from 'node:fs/promises';
+import { resolve, sep } from 'node:path';
+
+const root = resolve('dist');
+const routes = JSON.parse(await readFile('maintenance/legacy-routes.json', 'utf8'));
+const escape = (text) => text.replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+let count = 0;
+for (const [route, entry] of Object.entries(routes)) {
+  if (entry.type !== 'retired') continue;
+  const target = resolve(root, `.${route}`, 'index.html');
+  if (!target.startsWith(root + sep)) throw new Error(`Unsafe route: ${route}`);
+  try { await access(target); throw new Error(`Existing page would be replaced: ${route}`); }
+  catch (error) { if (error.code !== 'ENOENT') throw error; }
+  const title = escape(entry.title.trim());
+  await mkdir(resolve(target, '..'), { recursive: true });
+  await writeFile(target, `<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,follow"><title>旧记录已归档 · 羽痕的小站</title>
+<link rel="icon" href="/brand/leaf.svg"><style>
+:root{color-scheme:light dark;font-family:system-ui,"Microsoft YaHei",sans-serif;color:#284a39;background:#edf2e9}*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:24px}main{max-width:560px;background:#fff;border-radius:24px;padding:clamp(24px,7vw,48px);box-shadow:0 16px 60px #294a3910}img{width:48px}h1{font-size:clamp(24px,5vw,32px);line-height:1.4}p{line-height:1.9;color:#657267}small{letter-spacing:.12em}nav{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}a{padding:10px 18px;border-radius:12px;text-decoration:none;background:#dfeddf;color:#285d3c}a:hover{background:#cde1ce}a:focus-visible{outline:3px solid #629879;outline-offset:3px}@media(prefers-color-scheme:dark){:root{background:#17211d;color:#e3eee4}main{background:#222e27}p{color:#b8c9bc}a{background:#334e3c;color:#d6e9d7}}
+</style></head><body><main data-pagefind-ignore><img src="/brand/leaf.svg" alt=""><p><small>羽痕的小站 · 旧记录</small></p><h1>这篇旧记录已归档</h1><p>「${title}」已在这次整理中移出公开文章。你可以去文章页，看看留下来的学习记录。</p><nav><a href="/archive/">浏览文章</a><a href="/">回到首页</a></nav></main></body></html>`, 'utf8');
+  count++;
+}
+console.log(`Legacy notices: ${count}`);

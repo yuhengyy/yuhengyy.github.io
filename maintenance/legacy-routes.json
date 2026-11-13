@@ -1,0 +1,178 @@
+{
+  "/knowledge/csharp-notes/": {
+    "type": "redirect",
+    "to": "/posts/csharp-learning/"
+  },
+  "/knowledge/data-Persistence/": {
+    "type": "redirect",
+    "to": "/posts/data-persistence/"
+  },
+  "/knowledge/framework-notes/": {
+    "type": "redirect",
+    "to": "/posts/framework-notes/"
+  },
+  "/knowledge/unity-notes/": {
+    "type": "redirect",
+    "to": "/posts/unity-paths/"
+  },
+  "/knowledge/net-notes/": {
+    "type": "redirect",
+    "to": "/posts/network-basics/"
+  },
+  "/projects/unity/mmo-game/": {
+    "type": "redirect",
+    "to": "/posts/mmo-course/"
+  },
+  "/articles/": {
+    "type": "redirect",
+    "to": "/archive/"
+  },
+  "/journal/": {
+    "type": "redirect",
+    "to": "/archive/"
+  },
+  "/tags/": {
+    "type": "redirect",
+    "to": "/archive/"
+  },
+  "/knowledge/": {
+    "type": "redirect",
+    "to": "/archive/"
+  },
+  "/projects/": {
+    "type": "redirect",
+    "to": "/archive/"
+  },
+  "/journal/archive/2026/": {
+    "type": "redirect",
+    "to": "/archive/"
+  },
+  "/journal/category/小站日常/": {
+    "type": "redirect",
+    "to": "/archive/"
+  },
+  "/projects/csharp/": {
+    "type": "redirect",
+    "to": "/archive/?category=C%23"
+  },
+  "/projects/unity/": {
+    "type": "redirect",
+    "to": "/archive/?category=Unity"
+  },
+  "/workspace/": {
+    "type": "redirect",
+    "to": "/about/"
+  },
+  "/workspace/repos/": {
+    "type": "redirect",
+    "to": "/about/"
+  },
+  "/workspace/publish/": {
+    "type": "redirect",
+    "to": "/about/"
+  },
+  "/workspace/writing/": {
+    "type": "redirect",
+    "to": "/about/"
+  },
+  "/projects/csharp/study-csharp/": {
+    "type": "redirect",
+    "to": "/about/"
+  },
+  "/about/goals/": {
+    "type": "retired",
+    "title": "学习目标（这两个多月做的事）"
+  },
+  "/about/resume/": {
+    "type": "retired",
+    "title": "个人简历"
+  },
+  "/knowledge/problems/": {
+    "type": "retired",
+    "title": "问题记录（解决方案汇总）"
+  },
+  "/knowledge/reflections/": {
+    "type": "retired",
+    "title": "学习心得（方法与思考）"
+  },
+  "/progress/completed/": {
+    "type": "retired",
+    "title": "完成情况（已学内容）"
+  },
+  "/progress/": {
+    "type": "retired",
+    "title": "进度追踪 - 索引页"
+  },
+  "/progress/plan/": {
+    "type": "retired",
+    "title": "学习计划（时间安排）"
+  },
+  "/progress/todo/": {
+    "type": "retired",
+    "title": "待学习（计划内容）"
+  },
+  "/projects/csharp/priority-queue/": {
+    "type": "retired",
+    "title": "优先队列（C#实现）"
+  },
+  "/projects/csharp/tang-comprehensive/": {
+    "type": "retired",
+    "title": "唐老狮C#综合案例（多知识点整合）"
+  },
+  "/projects/unity/astar-navigation/": {
+    "type": "retired",
+    "title": "A星导航"
+  },
+  "/projects/unity/dialogue-system-free/": {
+    "type": "retired",
+    "title": "对话系统（免费版）"
+  },
+  "/projects/unity/dialogue-system-pro/": {
+    "type": "retired",
+    "title": "对话系统（付费版）"
+  },
+  "/projects/unity/item-toolkit/": {
+    "type": "retired",
+    "title": "物品工具包"
+  },
+  "/projects/unity/landlord-game/": {
+    "type": "retired",
+    "title": "斗地主游戏"
+  },
+  "/projects/unity/match3-dotween/": {
+    "type": "retired",
+    "title": "三消游戏（Dotween版）"
+  },
+  "/projects/unity/match3-game/": {
+    "type": "retired",
+    "title": "三消游戏（基础版）"
+  },
+  "/projects/unity/qframework-create/": {
+    "type": "retired",
+    "title": "QFramework创建（框架初始化）"
+  },
+  "/projects/unity/qframework-games/": {
+    "type": "retired",
+    "title": "QFramework简易游戏（框架实战）"
+  },
+  "/projects/unity/qframework-sgame/": {
+    "type": "retired",
+    "title": "项目实战"
+  },
+  "/projects/unity/qframework-study/": {
+    "type": "retired",
+    "title": "QFramework学习（核心模块笔记）"
+  },
+  "/projects/unity/tcp-network/": {
+    "type": "retired",
+    "title": "TCP网络通信（C#实现）"
+  },
+  "/projects/unity/utility-toolkit/": {
+    "type": "retired",
+    "title": "工具包（Unity通用工具类）"
+  },
+  "/journal/a-new-chapter/": {
+    "type": "retired",
+    "title": "小站新装，记录继续"
+  }
+}
