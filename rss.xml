@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>羽痕的小站</title><description>把好奇心，写成日常。</description><link>https://yuhengyy.github.io/</link><language>zh_CN</language><item><title>重新拾起 C#：语法之外的学习笔记</title><link>https://yuhengyy.github.io/posts/csharp-learning/</link><guid isPermaLink="true">https://yuhengyy.github.io/posts/csharp-learning/</guid><description>从编码习惯到属性、委托与事件，记录重新学习 C# 时的理解和疑问。</description><pubDate>Fri, 13 Nov 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;最初的方向&lt;/h2&gt;
+&lt;p&gt;首先就是学习 C#，把曾经的知识拾取起来，因为工作变动原因，上一份工作为逆战，项目使用 UDK 和 UnrealScript 进行开发，开发环境导致学习方向的不同，半年没有触碰 Unity 去制作游戏了，偶而看的教程也是 Unity 相关的浅显的一些小工具和程序员相关的视频&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;但不是没有收获&lt;/p&gt;
+&lt;p&gt;1，例如&lt;a href=&quot;https://www.bilibili.com/video/BV1xZ421M7mY&quot;&gt;视频：不应过度嵌套代码&lt;/a&gt; ，引起自己思考，回想了自己的习惯，我也比较喜欢在使用 UnrealScript 使用自己开发的小逻辑或者工具进行封装，然后防止深度嵌套，例如某个技能是散弹，则矩阵变化功能进行封装，例如某个技能需要逐渐扩散的预警，则封装 ValueChange 到一个管理器统一管理&lt;/p&gt;
+&lt;p&gt;2，例如&lt;a href=&quot;https://www.bilibili.com/video/BV1WK4tzTEM4&quot;&gt;视频：避免不良命名习惯&lt;/a&gt; ，我为什么命名规范+多注释，因为不熟悉 UDK 和 UnrealScript，导致我在看一些老项目代码的时候，完全不理解代码的含义和逻辑，为了让上个大版本写的内容在下版本也能使用，以及策划配置能够理解，所以命名规范和多注释是必须的，比如 AD36 和 AD38 都存在散弹技能，可以使用上述的矩阵变化功能，还有扩散预警功能，甚至美术给我资产后的 Line 的使用，场景资产的开门关门（我主要做 Boss，Boss 战要控制场景关门）&lt;/p&gt;
+&lt;p&gt;3，跟随 Boss 漂浮的武器同步卡顿，则使用挂载插槽点的方式，使武器成为 Boss 模型一部分，而抛掷技能则隐藏并生成一个新的武器模型进行抛掷，抛出的武器，回收的武器，跟随的武器，是三种，在模型隐藏变化的时候，利用特效遮住切换的卡顿&lt;/p&gt;
+&lt;p&gt;4，UDK 无光照系统怎么办？用透明模型+贴花工具，伪装成探灯，但实际上是一个透明模型在移动，贴花在地面上&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;但总的来说，半年没碰 C# 和 Unity，导致知识点遗忘严重，所以决定重新学习 C#&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;首先就是学完唐老狮的 C#四部曲&lt;/p&gt;
+&lt;p&gt;大部分内容都是很久以前就会，但是不知道具体实现，都是会用但是也就只会用&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;所以最重点的应该就是自己去创建了一个泛型 List 和泛型 Dictionary，实现相关类似 C#自带的 List 和 Dictionary 功能，&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;比较难的是迭代器和反射和特性，知识不多但主要是精通难（例如反射，知识少但变化强，能非常抽象整合功能）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;结尾就是自己写大多数常用排序，选排，快排，插排，希尔实际上大学前就对常用排序就很了解，但是没有亲手写过，又重新巩固起来&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;（课程有相关练习，基本上一个不落，最后大项目实践实现了贪吃蛇和飞行棋，因为纯靠刷新控制台文字进行游玩，感觉比 Unity 同类型游戏还麻烦，好处是练习了自己的纯逻辑思维和断点调试能力）&lt;/p&gt;
+&lt;h2&gt;属性&lt;/h2&gt;
+&lt;p&gt;使用 &lt;code&gt;{ get; set; }&lt;/code&gt; 为什么就存在保护性了？属性看起来像字段，但本质是方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;get&lt;/code&gt; → 相当于一个返回私有字段值的方法&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;set&lt;/code&gt; → 相当于一个接收参数并验证后赋值的方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;保护性不是让代码「更安全」，而是让数据行为「更可控」。通过属性这个「守门员」来确保数据的合法性，这才是面向对象封装的核心思想。&lt;code&gt;get&lt;/code&gt; / &lt;code&gt;set&lt;/code&gt; 可以分别设置，控制其访问权限。&lt;/p&gt;
+&lt;h3&gt;自动属性（编译器快捷方式）&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;public class User
+{
+    public string Name { get; set; }  // 一行搞定
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;编译器会自动生成后备字段和访问器。自动属性适合非业务逻辑（如名字显示、id 设置）；需要验证数据（如钱不能为负数）时，在 &lt;code&gt;set&lt;/code&gt; 里增加逻辑。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;自动属性 ≠ 有保护性&lt;/strong&gt;，它只是语法糖；&lt;strong&gt;真正的保护性来自业务逻辑验证&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2&gt;委托和事件&lt;/h2&gt;
+&lt;p&gt;委托是&lt;strong&gt;类型安全的函数指针&lt;/strong&gt;，可以把方法当作参数传递，实现回调和解耦。&lt;/p&gt;
+&lt;h3&gt;Action 与 Func（日常主力）&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;返回值&lt;/th&gt;
+&lt;th&gt;泛型含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Action&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;无 (void)&lt;/td&gt;
+&lt;td&gt;所有泛型都是参数类型&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Func&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;有&lt;/td&gt;
+&lt;td&gt;前面是参数类型，&lt;strong&gt;最后一个是返回类型&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;为什么需要 event？&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;// 不用 event — 外部可以清空订阅、随便触发
+public Action&amp;lt;int&amp;gt; OnHealthChanged;
+
+// 用 event — 外部只能 += / -=
+public event Action&amp;lt;int&amp;gt; OnHealthChanged;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;event 的三重保护&lt;/strong&gt;：外部不能直接调用 Invoke；不能用 &lt;code&gt;=&lt;/code&gt; 赋值；只能 &lt;code&gt;+=&lt;/code&gt; / &lt;code&gt;-=&lt;/code&gt; 订阅和取消。&lt;/p&gt;
+&lt;p&gt;Unity 中：纯逻辑解耦用 &lt;strong&gt;C# Event&lt;/strong&gt;（性能好）；UI 按钮等需要 Inspector 配置用 &lt;strong&gt;UnityEvent&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;常见陷阱：忘记在 &lt;code&gt;OnDestroy&lt;/code&gt; 中 &lt;code&gt;-=&lt;/code&gt; 取消订阅；无人订阅时用 &lt;code&gt;?.Invoke()&lt;/code&gt; 防空引用。&lt;/p&gt;
+</content:encoded></item><item><title>数据持久化：从 PlayerPrefs 到配置工具</title><link>https://yuhengyy.github.io/posts/data-persistence/</link><guid isPermaLink="true">https://yuhengyy.github.io/posts/data-persistence/</guid><description>围绕 PlayerPrefs、JSON、二进制与 ScriptableObject，整理学习数据持久化的过程。</description><pubDate>Fri, 13 Nov 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Playerprefs&lt;/h2&gt;
+&lt;p&gt;学完了 C#基础后，就开始接触数据存储功能
+Playprefs 虽然简单，就是 string,bool,int 这三种类型通过唯一 key 进行存储和读取&lt;/p&gt;
+&lt;p&gt;但是课程还是特别深入的，存储还能理解，但后续读取如同用反射自己做了给反序列化工具，让 99%的变量都能依据其名称进行读取，导致其 string key 的十分长，例如我这里注册表有参数为 Player1_PlayerInfo_Dictionary 2_ItemDict_Value_1_ItemInfo_String_name_h888815756&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;代表就是名称为 Player1 的 PlayerInfo 的类里面，存储了一个 ItemDict 的字典长度为 2，其中 int 值为 1 的 ItemInfo 的 value 的名称为 h888815756（这里采用了加密）
+课程使用了递归+反射，导致 Playerprefs 简单但课程质量高，我能理解并且跟上，但是难以独立写出来这种管理器功能&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;最后是跟着课程制作了一个 Playprefs 的数据管理器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2&gt;Json&lt;/h2&gt;
+&lt;p&gt;Json，知识点少，API 自动读取类存储类，大概内容就是了解 API，而且看 json 文件也能读懂也会自己配置，缺陷是无法存储字典类型&lt;/p&gt;
+&lt;p&gt;后续增加了 LitJson 插件，不仅仅支持数据集的存读，字典也能进行，但是缺点依旧存在，因为 json 文件本身的格式问题，key 都是默认 string，需要统一规范，而且因为反序列化顺序所以使用 LitJson 需要保留空的构造函数&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;最后以此不同的优缺点创建了一个 Json 数据管理器，而且调用时通过枚举去选择使用序列化和反序列化的方式为 Json 还是 LitJson&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;二进制存储&lt;/h2&gt;
+&lt;p&gt;二进制，难也不难，序列化和反序列化的实现很简单，早早实现了相关的功能和单独的二进制数据管理器，更多的是学了是关于文件的操作和状态判断，还有 Excel 转数据工具&lt;/p&gt;
+&lt;p&gt;最终整合之前的知识，创立一个 Excel 功能，结合文件操作状态判断，通过相应 Excel 格式规则，把 Excel 表的内容自动生成一个类和容器类&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;实现了二进制存储的数据管理器和自动化生成类工具&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Protobuf 序列化&lt;/h2&gt;
+&lt;p&gt;当初学，不明所以，现在回顾，难也简单，现在的我觉得它和反射知识的处境差不多（知识简单，实现简单，不知道功能的实践用途，但是未来有大用处）
+单论知识，使用几个 API，然后按照规则编写相关类的结构，生成一个自动化的类，用起来感觉就是用插件生成一个自动化类，按照个人开发效率和知识展现，甚至不如《二进制存储》里面的 Excel 自动生成类+二进制数据管理器&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;但重点是，此课程是接着 UDP 通信的实践，实践让我看到 Protobuf 能把一个类转化的 byte[]压缩成原有 30%-50%，所以商业化内容必选它，流量成本大减&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;附言：一个月之后我巩固网络开发，后续学习所谓的 NetMsg 和 CMD 结构才发现，它能完全忽略空引用，传递 byte[]长度实际上可以更小，达到 30%以下&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;ScriptableObject&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;可视化配置 — 策划/美术可以直接编辑&lt;/li&gt;
+&lt;li&gt;保持引用 — 不丢失 Unity 对象关系&lt;/li&gt;
+&lt;li&gt;设计期存在 — 成为项目资产的一部分&lt;/li&gt;
+&lt;li&gt;运行时共享 — 多个系统访问同一数据源&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;外挂怎么办？&lt;/strong&gt; 采用数据分离，SO 并不存储真正的数据，而是资产为主：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;客户端 SO：名字、图标、特效、声音、模型&lt;/li&gt;
+&lt;li&gt;服务器数据：伤害、CD、价格、成功率、成长数值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;个人对数据持久化理解&lt;/h3&gt;
+&lt;p&gt;在单机上，与数据相关使用二进制或者 Json、ScriptableObject，比如玩家进度、背包数据、某关卡出怪速度和怪物数值，用于资产引用和测试时最方便（可视化 + 随意更改）。PlayerPrefs 则是音量大小、亮度等——明显区别是，网络游戏中换了设备就重置的设置，大多用 PlayerPrefs 存储。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;数据归属&lt;/th&gt;
+&lt;th&gt;存储方案&lt;/th&gt;
+&lt;th&gt;例子&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;属于这台设备&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;PlayerPrefs&lt;/td&gt;
+&lt;td&gt;键位设置、画质选项&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;属于这个玩家&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;二进制/JSON&lt;/td&gt;
+&lt;td&gt;等级、装备、进度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;属于这个游戏&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;ScriptableObject&lt;/td&gt;
+&lt;td&gt;角色设计、关卡模板&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content:encoded></item><item><title>从工具封装到 QFramework：我的框架学习记录</title><link>https://yuhengyy.github.io/posts/framework-notes/</link><guid isPermaLink="true">https://yuhengyy.github.io/posts/framework-notes/</guid><description>在程序基础框架、QFramework 与 MVC 的学习之间，慢慢建立对代码组织的理解。</description><pubDate>Fri, 13 Nov 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;程序基础框架&lt;/h2&gt;
+&lt;p&gt;唐老狮程序基础框架算是我第一次接触的类框架内容，难度不高，自己琢磨也是能够写出类似的内容的，与其说框架，不如说 Tool Function 更加合适，因为其工具作用使用广泛但扩展性弱&lt;/p&gt;
+&lt;p&gt;例如把单例写成循环自调用泛型，整合资源加载，音频播放器，事件注册模块这些进行封装&lt;/p&gt;
+&lt;p&gt;难度部分主要在 UIRoot 的创建和对象池功能的实现
+但实际上在曾经实习的时候（视辰，制作 MR 游戏）就需要深度了解 Pico 这种 VR 设备对 UI 的支持还有设备操作的映射不同于键鼠，所以当时就制作类似的 UI 功能进行整合
+毕设使用了 B 站 up 奥飒姆 Awesom （https://space.bilibili.com/641773200 ）的对象池加载模块
+所以难点的对象池框架模块和 UI 框架模块都是我曾经接触过的内容&lt;/p&gt;
+&lt;p&gt;所以此框架最大用处并非学习，而是复习，熟知我曾经会的内容（正如我开头介绍，很久没碰 Unity 和 C#了）&lt;/p&gt;
+&lt;h2&gt;QFramework&lt;/h2&gt;
+&lt;p&gt;QFramework 算是我真正意义上接触的第一个框架
+我的总结：小，巧，泛，通&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;小：底层代码只有 800 行
+巧：功能设计合理，易于扩展，特别是 IOC 容器
+泛：Architecture 设计，随意组合卸载自己设计的模块
+通：代码通用，例如 QFramework.Toolkits 是基于 QFramework 开发的工具，也就是说 QFramework 这个框架能开发框架&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;最初学习是很简单的，就是《QFramework v1.0 使用指南》，把游戏变成了四层并且用命令和观察者模式互相调用数据&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;View（Controller）：用户摸得到，控制的了，看得到的，大多数指 UI 控件和角色操作控件&lt;/li&gt;
+&lt;li&gt;System（Controller），作为中介传递操作和同步数据，因为 Unity 的 UI 框架适合 MVVM 和 MVP，所以实际上很少有 System，所以我的理解的 System 是把功能进行封装，让 View 和 Model 能够通过命令和观察者模式互相调用通知&lt;/li&gt;
+&lt;li&gt;Model，基础数据，例如血量，金币，杀敌数，或者角色数据，关卡配置等等&lt;/li&gt;
+&lt;li&gt;Utility，最基础功能，或者说工具
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;BindableProperty&amp;lt;T&amp;gt;&lt;/code&gt; ：把 int 用其存储，然后该 int 就能直接自己增加事件而不是使用事件中心&lt;/li&gt;
+&lt;li&gt;C#扩展写法：比如 this.Log，txt.SetName，增加日志工具和 UI 工具&lt;/li&gt;
+&lt;li&gt;ILogic：继承可自动实现非 Mono 类中的生命周期函数，通过不同功能进行周期函数命名，但内容差不多 Awake（Init），Update（Tick），Destroy（Uninit）&lt;/li&gt;
+&lt;li&gt;DoTween，序列化工具&lt;/li&gt;
+&lt;li&gt;总之，都是基础功能/工具&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中 Controller 比较难以分类所以在 View 和 System 都写了，因为游戏操作，特别是 UI，往往是 System 需要得到组件 View 才能控制（但在未来学了 MVVM 和 MVP，感觉方法有多样，没必要拘泥于一些理解上的细节）&lt;/p&gt;
+&lt;p&gt;提炼的精华：&lt;strong&gt;上层向下用命令传递 Command，下层向上层传递用观察者模式进行监听+通知，数据变化时通知所有需要观察自己的脚本（命令模式+观察者模式）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;理解这些后，我算是真正对框架有基本的了解&lt;/p&gt;
+&lt;p&gt;但，难也是真难，因为之后我去看了老师真正的实践项目，感觉只有框架老手之后才会有如此敏捷的思维和疯狂跳转的功能和实践&lt;/p&gt;
+&lt;p&gt;我跟着学习了类幸存者游戏，比较难跟上，4 分钟能跳转 10 个脚本去增加一大堆通过框架完善的逻辑和功能&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;大概率是因为我只学了 QFramework v1.0 使用指南，但是根据此框架实际上演变了更多的 QFramework.Toolkits&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;QFramework.Toolkits 存在 UIKit，ResKit，AudioKit，CoreKit&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;CoreKit 又有，ActionKit，CodeGenKit，EventKit，PoolKit&lt;/p&gt;
+&lt;p&gt;所以此框架虽然小，但工具众多&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;游戏制作需要熟知了整个框架和老师自己开发的工具，哪怕到目前为止，我还没学明白 QFramework 和其制作游戏的流程
+不过正因为如此，跟着做完后虽然迷迷糊糊，但反而进步巨大，在只跟着类幸存者这一个项目就能熟悉下面的 MVC 框架&lt;/p&gt;
+&lt;h2&gt;MVC 框架&lt;/h2&gt;
+&lt;p&gt;MVC 框架，难度骤减，因为先了解的 QFramework ,顺其自然理解，有点像逆向教学，先来个猛的然后学习基础&lt;/p&gt;
+&lt;p&gt;1，先是全部代码整合到一个脚本（项目逻辑不难，就是在脚本内有数据，按钮，点击按钮让玩家升级然后自己通知自己）&lt;/p&gt;
+&lt;p&gt;2，然后把参数分类，分别匹配 MVC 三个字母创建三个脚本分别控制，数据（M），UI（V），按钮点击事件（C）（以此制作了一个简单的 MVC 框架）&lt;/p&gt;
+&lt;p&gt;3，但是因为 UI 组件和事件分开很抽象，还要再获取另外的脚本获取方法名进行调用，因为很多时候都是 Onclick.AddListen+lambda 表达式，于是借此引入 MVP，所有 UI 只有变更的 Text 这种 UI 才放到 View，它只做被改而不进行任何逻辑，所谓的按钮承担了最重要的决策者 P，控制 Model 改变又控制 View 组件改变&lt;/p&gt;
+&lt;p&gt;4，循序渐进，P 拆分成 VM，框架变成 MVVM，差别不大，无非是把 P 和 V 进行双向绑定，但是和 Unity 水土不服，事件和按钮，本来就是要写一起的&lt;/p&gt;
+&lt;p&gt;5，之后老师写了自己理解的框架，把 MVVM 的 View 和 ViewModel 合并成 ModelPanel，也就是 MP，数据操作和其状态更新还有事件系统，本可以写一起，本来就需要获取再赋值，或者获取再进行点击事件监听和传递，分开写是浪费（我认为这是最符合 Unity 和其 UI 系统的框架）&lt;/p&gt;
+&lt;p&gt;6，之后学习了 pureMVC，主要是增加了中介 Mediator，外观 Facade，命令 Command，进行数据的传递，这也是为什么我在上面书写 QFramework 心得时，哪怕自己感觉没学明白但却说 ：&lt;em&gt;“进步巨大，在只跟着类幸存者这一个项目就能熟悉下面的 MVC 框架”&lt;/em&gt;
+&lt;strong&gt;因为这回到了 QFramework 的基础学习里面学到的知识了：数据的传递，数据的层级设计&lt;/strong&gt;&lt;/p&gt;
+</content:encoded></item><item><title>状态同步 MMO：一次课程实践复盘</title><link>https://yuhengyy.github.io/posts/mmo-course/</link><guid isPermaLink="true">https://yuhengyy.github.io/posts/mmo-course/</guid><description>沿着客户端与服务器框架、AOI、移动同步和战斗流程，回看一次 MMO 课程实践。</description><pubDate>Fri, 13 Nov 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;1，搭建客户端基本业务框架&lt;/h2&gt;
+&lt;p&gt;主要是类似之前的框架小课程，整合系统逻辑和服务层逻辑（这里服务层可以看作 Utility 工具层）&lt;/p&gt;
+&lt;p&gt;与 QFramework 不同的是（以后 QFramework 简称 QF），这里使用大多数是 PERoot.Instance.Svc 或者 PERoot.Instance.Sys，而不是 QF 里面的 &lt;code&gt;this.System&amp;lt;Svc&amp;gt;().Function&lt;/code&gt; 或者 &lt;code&gt;this.System&amp;lt;Sys&amp;gt;().Function&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;所以率先书写的是 PERoot，整个项目的根，之后是接口 ILogic 和 IAwake，IUpdate，IDestroy，让非 Mono 都能通过 PERoot 注册，系统层和服务层使用不同接口进行初始化让自己成为 PRRoot.List 里面的各种接口进行不同的生命周期&lt;/p&gt;
+&lt;p&gt;重点是 BaseMode 定义游戏模式，让不同模式进行退出和进入可以清理和初始化（类似状态机），比如默认是登录模式，进入之后是角色创建模式，最后才是进入游戏到主城游玩模式&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;系统层：AcctSys，StageSys，RoleSys，TaskSys
+服务层：TiemrSvc，ResSvc，EvtSvc，NetSvc，AudioSvc，UISvc&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;UI 存在一个 WindowRoot，里面提供了许多 Function，利用泛型和递归，传入名字和查找组件的类型则准确找到，或者 Img 和 txt 显示隐藏，颜色，文本等改变重载&lt;/p&gt;
+&lt;p&gt;UI 的功能跟随上述的 BaseMode 进行不同 UI 的显示隐藏（但是我觉得违背了 MVC 准则，这位老师很喜欢写一块，但是又因为后续要接入 Net，所以我又觉得这些无关大雅，因为 Model 本来就不在自己这，这个准则无非是上述的 MP（ModelPanel）框架去掉 M 变成了 P（Panel）框架，看上去是一团糟，只有 Panel，但实际上不是）&lt;/p&gt;
+&lt;p&gt;不过 UI 之间解耦不错，除了不同大型面板，登录，弹窗，对话，加载等，还因为主城功能多，还分类成对话，任务，玩家，血量，技能等分类的 Comp，野外或者副本不需要任务和对话，能不同模式看到需要的不同 UI 组件，而且我比较难受的是使用方法&lt;/p&gt;
+&lt;p&gt;PERoot.UISys.LoginWnd 或者 PERoot.UISys.MajorWnd.HPItemComp，虽然这位老师因为其框架遵从子类父类互相存（在上述 ILogic 里面初始化），所以实际上是 UISys.LoginWnd，MajorWnd.HPItemComp 这种方式调用，但是我还是觉得怪怪的&lt;/p&gt;
+&lt;p&gt;第一章就是这样，通过搭建框架，完成系统控制游戏模式切换，实现登录模式，进入之后是角色创建模式，最后才是进入游戏到主城游玩模式（暂时未接入 Net,登录用的是虚拟消息）&lt;/p&gt;
+&lt;h2&gt;2，搭建服务器基本业务框架&lt;/h2&gt;
+&lt;p&gt;补充，第一章引用了插件《通用 UI 事件监听器》，但实际上是写在 WindowRoot 的 Function 里面的事件注册工具，监听按，拖，抬，点，并且加回调，和 onclick.AddListen 差不多，但是方便的是可以知道其他行为，后续的轮盘就是依据此工具开发的（回调拖拽点并更新位置）&lt;/p&gt;
+&lt;p&gt;之后就是服务器，引入 4 个插件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从零开发跨平台通用日志插件（object 增加扩展，随时打 log，warn，error，还有不同颜色等）&lt;/li&gt;
+&lt;li&gt;高性能定时系统实现（计时器，没啥好说的，就是增加 Task 去控制定时调用事件）&lt;/li&gt;
+&lt;li&gt;通用消息发布与订阅机制（也叫事件中心，单例调用 EvtScv 去增加事件 key 和回调函数，触发 key 就调用那个函数了）&lt;/li&gt;
+&lt;li&gt;IOCP 高性能 TCP 通信（序列化基于 json，功能和我之前写的异步+多线程的 TCP 通信项目差不多，但这个好像更好）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;服务器最初搭建抽象，很多概念都是互相跳转，所以完全跟不上也不知道作用，我不多说，结构大致是&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;-Main（最初方法，初始化启动器）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;-- BattleLaunch（包含多个世界容器）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;--- WorldContain（每个世界容器存在多个事件）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;---- World（主城世界，野外世界，副本世界）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;----- WorldMgr（例如野怪生成）
+----- WorldComp（AOI 和寻路 Nav，这一章没有做，但是声明了类）
+----- Role（角色在服务器的组件，存在于 World）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;------ RoleComp（角色的组件，例如 MoveComp，这一章没有做，但是声明了类）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这一章完全就是不同类的生成和框架搭建，这个全部都是异步+多线程，BattleLaunch 可以根据 WorldContain 的容量创建玩家要进入的世界（实际上也就是判断里面有几个 World，其中主城 World 配比 x，野外 World 是 20，副本 World 是 10 这样的算法，去得到最低的容量 WorldContain）&lt;/p&gt;
+&lt;p&gt;到最后，这一章的游戏进度没有进展，功能大致为：Client 接入了 NetSvc，Server 会按照层级逐步生成，最后创建一个世界和 Role，然后 Role 挂一个 NetComp（继承 RoleComp）单独和 Client 的 NetSvc 进行通信，完善之前的虚拟消息为真实从服务器拿取的 NetMsg&lt;/p&gt;
+&lt;p&gt;虽然不是从这时候察觉的但是这时候我整合了 NetMsg+CMD 的终极作用&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CMD 有各种请求，和各种回应，例如登录，注册，创建新角色等等等等
+而每一个 CMD 的枚举都存在一个 ReqPack 放在 NetMsg 里面，大多数情况下 NetMsg 的包只有一个有效
+而服务器和客户端就是在接收 Token 消息，在底层反序列化然后得到 NetMsg 后，通过 CMD 的枚举判断我该读取哪个 ReqPack（client 发，server 收）或者 RspPack（client 收，server 发），然后做出相应操作&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;3，服务器寻路和 AOI 视野算法&lt;/h2&gt;
+&lt;p&gt;导入 Nav 地图和 AOI 插件到服务器
+这一章基本上没自己的逻辑和框架，没多少思想,就是用工具&lt;/p&gt;
+&lt;p&gt;逻辑基本上就是每个服务器的 Role 存在 AOIComp，AOIComp 存在一个&lt;code&gt;&amp;lt;int,AOIComp&amp;gt;&lt;/code&gt;字典存储&lt;/p&gt;
+&lt;p&gt;服务器的 World 存在 AOIMgr
+然后服务器的 AOIMgr 感觉哪个玩家是进入视野，则同步给其他玩家，传入唯一 uid 和 RoleData&lt;/p&gt;
+&lt;p&gt;客户端收到了数据包和该玩家需要创建的位置和方向则利用自己的 ResSvc 进行创建，而且服务器的 AOIMgr 会控制 Enter 和 Exit，让服务器的 Role 和 Client 的玩家做出不同操作（例如服务器就是不进行移动同步的广播，当然这是之后的内容，客户端则是销毁该玩家模型）&lt;/p&gt;
+&lt;p&gt;寻路则是有一个多边形漏斗算法插件，给出起始点和末尾点，就能把数据传入 Client 的玩家上（Client 玩家本身也有一个这样的插件，但用的是 Unity 自带的 Nav，之所以客户端和服务器都有，主要是为之后的怪物寻路做铺垫，因为怪物属于服务器权威）&lt;/p&gt;
+&lt;h2&gt;4，客户端移动同步和预表现&lt;/h2&gt;
+&lt;p&gt;通过算法同步延迟和追击&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;重点为，只同步玩家操作的改变，然后服务器计算，并且校验，然后同步给其他客户端&lt;/strong&gt;
+延迟怎么办？？
+通过方向向量+速度+延迟时长，进行操作玩家位置的预计算，保证在同一时间，两个客户端和服务器都看到的差不多
+然后每 3 秒再继续核心定位一次的心跳消息（心跳消息也用在缓存上面，玩家需要 10 秒未重连则销毁，不然服务器还是默认它呆在原地）&lt;/p&gt;
+&lt;h2&gt;5，任务系统和 NPC 对话系统&lt;/h2&gt;
+&lt;p&gt;完全的 Unity 本身的业务，唯二联网的是&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TaskData 的获取然后在 UI 表现任务信息&lt;/li&gt;
+&lt;li&gt;Task 状态的改变请求（例如完成任务，接取任务，领取奖励）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;任务完全在客户端进行表现，寻路是依赖 Unity 的 Nav 计算核心移动点位，然后客户端自动操作玩家的移动和方向&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;（这里不使用服务器寻路是因为老师说，玩家可以操作的，没必要在服务器进行寻路，实际上只要核对接取和完成的时间差，和数据报本身消息是否有误即可，我认为不保障安全，还可以在存储一个唯一会变化的 Token，这里指字符串令牌，每次登录创建，领取奖励和完成任务需要这个 Token 无误）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;6，公共地图怪物和血条管理&lt;/h2&gt;
+&lt;p&gt;公共地图怪物没啥好说的，就是配置怪物的位置种类群集数等等等，利用之前服务器的 AOIMgr，向玩家传递 MonserData 告诉哪里要创建怪物，不过在 World 下存在一个 MonsterMgr 控制怪物新生成&lt;/p&gt;
+&lt;p&gt;血条也只是 UI 系统变种，只在客户端生效，若存在怪物则把 MonsterData 的 Pos 传入 UI 系统然后生成相关血条在 UI 上面&lt;/p&gt;
+&lt;h2&gt;7，核心战斗流程和伤害表现&lt;/h2&gt;
+&lt;p&gt;这里就很麻烦了，首先还是创建 Skill 配置（普攻算作 0cd 技能），流程复杂&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;大概就是，服务器和客户端都存在 Skill
+默认玩家这里请求合法，保证流畅性，玩家按下，就继续普攻&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;但正因为普攻存在前摇&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在前摇的时候 Client 发出请求，发送需要打的敌人和伤害还有自己位置等一系列数据包&lt;/p&gt;
+&lt;p&gt;因为怪物是服务器权威，所以服务器还会进行校验，校验各种消息，比如位置，是否友军，伤害等校验完毕后会发送一个击打成功的回应&lt;/p&gt;
+&lt;p&gt;所以在前摇期间，客户端不卡，收到服务器回应也就在某个时间段更新 HPItemComp，飘字+血量减少&lt;/p&gt;
+</content:encoded></item><item><title>Unity 网络学习：从 Socket 到消息协议</title><link>https://yuhengyy.github.io/posts/network-basics/</link><guid isPermaLink="true">https://yuhengyy.github.io/posts/network-basics/</guid><description>从 TCP 通信与消息拆包出发，记录接触 Protobuf、UDP 和 KCP 时的学习过程。</description><pubDate>Fri, 13 Nov 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;基础网络知识学习&lt;/h2&gt;
+&lt;p&gt;依据学完的 C#知识，去学习网络相关内容，虽然曾经也了解过，也使用 TCP 制作过相关的聊天功能并整合到游戏，但是这次还是系统学习了一下&lt;/p&gt;
+&lt;p&gt;先是了解基本的 IP 和端口，声明 TCP 或者 UDP，然后传递字符串&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;string ip = &quot;127.0.0.1&quot;;
+int port = 8888;
+IPEndPoint pt = new(IPAddress.Parse(ip), port);
+Socket tcpSkt = new Socket(pt.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+Socket udpSkt = new Socket(pt.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后了解其不同协议之间的通信原理和知识点，差别等&lt;/p&gt;
+&lt;p&gt;最后则是手写了一个阻塞的 While 循环的控制台控制程序，传递字符串对话，这些都是简单的&lt;/p&gt;
+&lt;h3&gt;手写 TCP 通信程序&lt;/h3&gt;
+&lt;p&gt;重点和难点是通过 BitConvert 和 Encoding.UTF8 去自己手写序列化和反序列化工具，并且了解 TCP 通信存在分包粘包，在教导下增加消息头，用自己的序列化和反序列化工具去实现消息体的拆分&lt;/p&gt;
+&lt;p&gt;最终通过其异步+监听，实现了一个可以服务器一对多，客户端一对一的通信消息&lt;/p&gt;
+&lt;h2&gt;项目实战,异步网络通信+Unity 整合&lt;/h2&gt;
+&lt;p&gt;网络通信原理与实战应用，整合之前的知识点复习，并制作 Unity 之间进行互相对话的 TCP 通信项目&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;虽然很早之前，实习前（目前约 2 年前）就做过一模一样功能，课程还是大学生项目，但是当时完全不懂，但这一次是系统性学习，不是盲敲，知道原理和原由&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Protobuf 序列化&lt;/h2&gt;
+&lt;p&gt;最后就是利用曾经知识，开启了 Protobuf 序列化课程，跟着巩固了自己的知识，主要是完善自己对 NetMsg 类和 CMD 消息结构的理解
+之后&lt;/p&gt;
+&lt;h2&gt;开发帧同步网络库&lt;/h2&gt;
+&lt;p&gt;用 UDP 通信实现 KCP 逻辑原理&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;但是这里就不懂了，除了心跳消息和重新分发，很多逻辑又看不懂，无法理解基于 UDP 实现 KCP 的结构，但是因为我后面跟随的课程是《状态同步 MMO 案例课程》所以看完课程加以实现后完并，而是搁置自己的不懂&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;协议对比（TCP / UDP / KCP）&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;TCP&lt;/strong&gt;：追求绝对可靠和稳定，速度是次要的（下载文件、网页浏览）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UDP&lt;/strong&gt;：追求极速，可靠性交给应用层处理（视频流、DNS 查询、VoIP）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;KCP&lt;/strong&gt;：在 UDP 基础上，自己实现了一套为实时性优化的可靠传输机制，目标是比 TCP 延迟更低（实时游戏、语音通话）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以「基于 UDP 实现 KCP」意思是：在 UDP 这个快速但不可靠的通道上，用 KCP 算法库实现可靠传输——既能享受 UDP 的速度，又能获得类似 TCP 的可靠性，并且延迟更低。&lt;/p&gt;
+&lt;p&gt;注意：KCP 不是 UDP，也不是通信协议，而是基于 UDP 的算法实现。&lt;/p&gt;
+&lt;h3&gt;粘包处理&lt;/h3&gt;
+&lt;p&gt;使用数据头和数据体：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据头为 int 4 字节，存储 body 的 byte 数组长度&lt;/li&gt;
+&lt;li&gt;数据体为各种数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;处理方法：无论接收到什么，始终按照 &lt;code&gt;byte[4] + byte[x]&lt;/code&gt; 进行接收。如果头没接完，下个包体的前 &lt;code&gt;4-n&lt;/code&gt; 位组合成头；如果身体没接完，只有 m，下个包体的前 &lt;code&gt;x-m&lt;/code&gt; 组成身体。哪怕一个包体只存在 &lt;code&gt;byte[1]&lt;/code&gt;，都会变成头或者身体一部分。&lt;/p&gt;
+</content:encoded></item><item><title>Unity 路径与特殊文件夹笔记</title><link>https://yuhengyy.github.io/posts/unity-paths/</link><guid isPermaLink="true">https://yuhengyy.github.io/posts/unity-paths/</guid><description>整理 Application 路径、Resources、Editor 和 StreamingAssets，方便开发时回看。</description><pubDate>Fri, 13 Nov 2026 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;路径 API、特殊文件夹与常见选型。相关：&lt;a href=&quot;/posts/data-persistence/&quot;&gt;数据持久化&lt;/a&gt; · &lt;a href=&quot;/posts/network-basics/&quot;&gt;网络基础&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;概览&lt;/h2&gt;
+&lt;p&gt;Unity 有多个&lt;strong&gt;命名特殊的文件夹&lt;/strong&gt;，它们有特定的行为和用途。按重要性排序：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件夹&lt;/th&gt;
+&lt;th&gt;运行时存在&lt;/th&gt;
+&lt;th&gt;编辑器专用&lt;/th&gt;
+&lt;th&gt;主要用途&lt;/th&gt;
+&lt;th&gt;打包后可读&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Resources&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;—&lt;/td&gt;
+&lt;td&gt;动态加载资源&lt;/td&gt;
+&lt;td&gt;✅（在dataPath内）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;StreamingAssets&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;—&lt;/td&gt;
+&lt;td&gt;原始大文件&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Editor&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;编辑器扩展脚本&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Plugins&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;—&lt;/td&gt;
+&lt;td&gt;原生插件(.dll/.so)&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Editor Default Resources&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;编辑器资源&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Gizmos&lt;/td&gt;
+&lt;td&gt;—&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;Scene视图图标&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;StreamingAssets&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;—&lt;/td&gt;
+&lt;td&gt;流式资源&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;LocalizedStrings&lt;/td&gt;
+&lt;td&gt;—&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;本地化字符串&lt;/td&gt;
+&lt;td&gt;—&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;一、Application 路径 API（运行时路径）&lt;/h2&gt;
+&lt;h3&gt;Application.dataPath（只读）&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;含义&lt;/strong&gt;：指向游戏安装目录的数据文件夹。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;编辑器模式&lt;/strong&gt;：指向 &lt;code&gt;Assets/&lt;/code&gt; 目录&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;打包后&lt;/strong&gt;：指向 &lt;code&gt;_Data/&lt;/code&gt; 文件夹（Windows）或 &lt;code&gt;.app/Contents/&lt;/code&gt;（Mac）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;权限&lt;/strong&gt;：只读&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用途&lt;/strong&gt;：访问项目内嵌的初始资源&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;Windows: C:/MyGame/MyGame_Data
+Mac:     /Applications/MyGame.app/Contents
+Android: APK包内部（需要UnityWebRequest读取）
+iOS:     应用沙盒只读区
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;找&quot;游戏安装包&quot;里的东西用它，但不能修改。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Application.persistentDataPath（可读写）★最重要&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;含义&lt;/strong&gt;：操作系统为应用分配的持久化数据存储目录。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;权限&lt;/strong&gt;：可读可写 → 唯一能放心写入的地方&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用途&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;游戏存档（PlayerPrefs 底层也用这个）&lt;/li&gt;
+&lt;li&gt;配置文件（图形设置、音效设置）&lt;/li&gt;
+&lt;li&gt;从服务器下载的资源&lt;/li&gt;
+&lt;li&gt;日志文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;Windows:   C:\Users\[用户名]\AppData\LocalLow\[公司名]\[产品名]
+Android:   /storage/emulated/0/Android/data/[包名]/files
+iOS:       沙盒 Documents 目录（会被iCloud备份）
+Mac:       ~/Library/Application Support/[公司名]/[产品名]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;存&quot;玩家生成的数据&quot;和&quot;需要保留的设置&quot;就用它，这是你的存档柜。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Application.streamingAssetsPath（通常只读）&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;含义&lt;/strong&gt;：构建时原封不动从 &lt;code&gt;StreamingAssets/&lt;/code&gt; 复制到程序包中。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;权限&lt;/strong&gt;：通常只读&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;用途&lt;/strong&gt;：存放不需要常规管线处理的大文件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;视频文件 (.mp4, .webm)&lt;/li&gt;
+&lt;li&gt;原始音频 (.wav)&lt;/li&gt;
+&lt;li&gt;大型配置文件 (.xml, .json, .bin)&lt;/li&gt;
+&lt;li&gt;AssetBundle 初始包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;平台差异&lt;/strong&gt; ⚠️：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Windows/Mac/Linux&lt;/strong&gt;：普通文件系统路径，直接 &lt;code&gt;File.ReadAllText()&lt;/code&gt; 即可&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Android/WebGL&lt;/strong&gt;：不是标准文件系统路径！必须用 &lt;code&gt;UnityWebRequest&lt;/code&gt; 异步读取&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;// Windows/Mac —— 直接读
+string json = File.ReadAllText(
+    Path.Combine(Application.streamingAssetsPath, &quot;config.json&quot;));
+
+// Android/WebGL —— 必须异步
+using (UnityWebRequest req = UnityWebRequest.Get(
+    Path.Combine(Application.streamingAssetsPath, &quot;video.mp4&quot;)))
+{
+    yield return req.SendWebRequest();
+    byte[] data = req.downloadHandler.data;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;放&quot;只读的大文件&quot;就用它，Android平台需特殊处理。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Application.temporaryCachePath（临时缓存）&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;含义&lt;/strong&gt;：临时文件存储目录，系统可在空间不足时清理。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;权限&lt;/strong&gt;：可读可写&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用途&lt;/strong&gt;：临时下载的图片、缓存数据、中间计算结果&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;注意&lt;/strong&gt;：不要放重要数据，可能被清理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;Windows: C:\Users\[用户名]\AppData\Local\Temp\[公司名]\[产品名]
+Android: /storage/emulated/0/Android/data/[包名]/cache
+iOS:     沙盒 tmp 目录
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h3&gt;其他路径 API&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;API&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;典型值(编辑器)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Application.consoleLogPath&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;日志文件路径&lt;/td&gt;
+&lt;td&gt;项目/Library/Player.log&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Application.streamingAssetsPath&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;td&gt;项目/StreamingAssets&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;二、特殊文件夹详解&lt;/h2&gt;
+&lt;h3&gt;📁 Resources（动态加载）&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;特点&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;内容会被打包进游戏中&lt;/li&gt;
+&lt;li&gt;运行时通过 &lt;code&gt;Resources.Load&amp;lt;T&amp;gt;()&lt;/code&gt; 加载&lt;/li&gt;
+&lt;li&gt;支持&lt;strong&gt;子文件夹&lt;/strong&gt;（最多一级深度建议）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;// 加载 Prefab
+GameObject prefab = Resources.Load&amp;lt;GameObject&amp;gt;(&quot;Prefabs/Enemy&quot;);
+Instantiate(prefab);
+
+// 加载所有同类型资源
+TextAsset[] allConfigs = Resources.LoadAll&amp;lt;TextAsset&amp;gt;(&quot;Configs&quot;);
+
+// 异步加载
+ResourceRequest req = Resources.LoadAsync&amp;lt;Texture&amp;gt;(&quot;Backgrounds/Level1&quot;);
+yield return req;
+Texture tex = req.asset as Texture;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;⚠️ 注意事项&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;增加包体大小&lt;/strong&gt;—— Resources 里所有东西都会打进包，即使没用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;加载速度慢&lt;/strong&gt;—— 包体越大越慢&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;官方不推荐大量使用&lt;/strong&gt;—— 建议 AssetBundle 或 Addressables 替代&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;不能在 Resources 内再套 Resources&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;适用场景&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;少量配置文件&lt;/li&gt;
+&lt;li&gt;首屏必需的资源（如 Logo）&lt;/li&gt;
+&lt;li&gt;快速原型开发阶段&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;📁 Editor（编辑器脚本）&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;特点&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;此文件夹内的脚本&lt;strong&gt;不会被打包进游戏&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;只在 Unity 编辑器内生效&lt;/li&gt;
+&lt;li&gt;可以嵌套：任何层级叫 &lt;code&gt;Editor&lt;/code&gt; 都行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;// Assets/Editor/MyWindow.cs
+using UnityEditor;
+using UnityEngine;
+
+public class MyWindow : EditorWindow
+{
+    [MenuItem(&quot;Tools/My Custom Window&quot;)]
+    public static void ShowWindow()
+    {
+        GetWindow&amp;lt;MyWindow&amp;gt;(&quot;我的工具&quot;);
+    }
+
+    void OnGUI()
+    {
+        GUILayout.Label(&quot;这是一个自定义编辑器窗口&quot;);
+        if (GUILayout.Button(&quot;点击&quot;))
+            Debug.Log(&quot;Hello!&quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;常用功能&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;自定义编辑器窗口 (&lt;code&gt;EditorWindow&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;自定义 Inspector 绘制 (&lt;code&gt;[CustomEditor]&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;菜单项 (&lt;code&gt;[MenuItem]&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;构建后处理 (&lt;code&gt;IPostprocessBuild&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Asset 导入处理器 (&lt;code&gt;AssetPostprocessor&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;子文件夹变体&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Editor Default Resources&lt;/code&gt; —— 存放编辑器脚本用的资源（图标等），用 &lt;code&gt;EditorGUIUtility.Load()&lt;/code&gt; 加载&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;📁 Plugins（原生插件）&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;特点&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;放置第三方 SDK / 原生库&lt;/li&gt;
+&lt;li&gt;支持按平台分子目录：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;Plugins/
+├── Android/          # .jar, .aar
+├── iOS/              # .framework, .a, .m
+├── Win/              # .dll, .lib
+├── Win64/
+├── Mac/
+├── x86_64/
+└── (根目录)           # 所有平台通用
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;常见内容&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第三方 SDK（声网SDK、友盟、Bugly等）&lt;/li&gt;
+&lt;li&gt;C/C++ 编译的原生库（.so / .dll / .dylib）&lt;/li&gt;
+&lt;li&gt;C# DLL（纯C#库也常放这里）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;加载顺序&lt;/strong&gt;：&lt;code&gt;Plugins/&lt;/code&gt; 下的脚本比普通 &lt;code&gt;Assets/&lt;/code&gt; &lt;strong&gt;先编译&lt;/strong&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;📁 Gizmos（Scene 视图辅助绘制）&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;特点&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;存放 &lt;code&gt;Gizmo&lt;/code&gt; 图标（.png/.gif）&lt;/li&gt;
+&lt;li&gt;在 Scene 视图中用 &lt;code&gt;DrawGizmo&lt;/code&gt; 绘制可视化调试信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;// 在任意 MonoBehaviour 中
+void OnDrawGizmos()
+{
+    Gizmos.color = Color.red;
+    Gizmos.DrawWireSphere(transform.position, attackRange);
+}
+
+// 如果有自定义图标，放在 Gizmos/ 下，同名即可自动关联
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h3&gt;📁 StreamingAssets（流式资源）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;见上方 Application.streamingAssetsPath 部分&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h3&gt;📁 Standard Assets / Packages&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Standard Assets/&lt;/code&gt; —— Unity 标准资源（旧版导入方式）&lt;/li&gt;
+&lt;li&gt;现代项目使用 &lt;strong&gt;Package Manager&lt;/strong&gt; 管理（&lt;code&gt;Packages/manifest.json&lt;/code&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2&gt;三、路径选择决策树&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;需要存放什么？
+│
+├─ 编辑器扩展代码？
+│   └→ Editor/
+│
+├─ 原生 SDK / 第三方库？
+│   └→ Plugins/ （或对应平台子目录）
+│
+├─ 需要运行时动态加载的资源？
+│   ├─ 少量且简单？
+│   │   └→ Resources/ （注意包体）
+│   └─ 大量或需要热更新？
+│       └→ Addressables / AssetBundle（推荐）
+│
+├─ 只读的大文件（视频/配置）？
+│   └→ StreamingAssets/
+│
+├─ 需要保存的玩家数据？
+│   └→ Application.persistentDataPath（代码中用，非物理文件夹）
+│
+└─ 临时缓存？
+    └→ Application.temporaryCachePath
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;四、面试高频问题&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Q: Resources.Load 为什么不建议用？&lt;/strong&gt;
+A: ① 增加包体大小（所有内容都打包）② 加载时扫描整个 Resources 文件夹③ 无法做增量更新④ 无法做分包加载。推荐用 Addressables 替代。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q: StreamingAssets 在 Android 上为什么不能直接 File.ReadAllText？&lt;/strong&gt;
+A: 因为 Android 打包后 StreamingAssets 在 APK 内部，不是真实文件系统路径。必须通过 UnityWebRequest 访问。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q: Editor 文件夹里的脚本会打包到游戏中吗？&lt;/strong&gt;
+A: 不会。Editor 文件夹下的脚本只在编辑器环境下编译和运行，不会包含在最终 build 中。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q: 如何区分 dataPath 和 persistentDataPath？&lt;/strong&gt;
+A: dataPath 是安装目录（只读），persistentDataPath 是用户数据目录（可读写）。类比：dataPath 是光盘/ROM，persistentDataPath 是硬盘/存档卡。&lt;/p&gt;
+</content:encoded></item></channel></rss>
